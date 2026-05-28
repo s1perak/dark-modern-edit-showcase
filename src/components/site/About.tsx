@@ -54,9 +54,11 @@ export function About() {
           </h2>
           <div className="mt-6 space-y-4 text-muted-foreground">
             <p>
-              I'm Robert, a freelance video editor based between Berlin and Lisbon.
-              For nearly a decade I've helped brands, musicians and directors find
-              the cut that makes their footage feel inevitable.
+              I'm Robert, a video editor based in Nuremberg, Germany. I work
+              with influencers and content creators to elevate their content
+              beyond basic editing. Through motion design, sound design, and
+              precise editing, I craft visuals that feel engaging, dynamic, and
+              built to hold attention.
             </p>
             <p>
               My work lives at the intersection of rhythm and restraint — moody
