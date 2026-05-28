@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
 const software = ["Premiere Pro", "After Effects", "DaVinci Resolve", "Photoshop"];
-const stats = [
-  { value: 240, suffix: "+", label: "Projects completed" },
-  { value: 80, suffix: "+", label: "Clients worldwide" },
-  { value: 9, suffix: "", label: "Years of experience" },
-];
 
 function Counter({ to, suffix }: { to: number; suffix: string }) {
   const [n, setN] = useState(0);
