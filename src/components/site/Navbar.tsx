@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -10,29 +10,17 @@ const links = [
 ];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
     <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        scrolled ? "py-3" : "py-6",
-      )}
+      className="fixed top-0 left-0 right-0 z-50 py-3"
     >
       <div
         className={cn(
-          "mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-500",
-          scrolled && "glass rounded-full px-6 py-3",
+          "mx-auto flex items-center justify-between glass rounded-full px-6 py-3",
         )}
-        style={scrolled ? { width: "min(96%, 72rem)" } : undefined}
+        style={{ width: "min(96%, 72rem)" }}
       >
         <a href="#top" className="flex items-center gap-2 font-semibold tracking-tight">
           <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-primary to-accent text-xs font-bold text-primary-foreground shadow-[var(--shadow-glow)]">
