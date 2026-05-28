@@ -35,8 +35,9 @@ export function Hero() {
             <span className="italic font-light text-muted-foreground">Editing</span>
           </h1>
           <p className="mt-8 max-w-xl text-base text-muted-foreground sm:text-lg">
-            I'm Robert — a video editor crafting bold, atmospheric edits for brands,
-            artists and filmmakers. Rhythm-led cuts, immersive sound, premium grade.
+            I'm Robert — a video editor for creators who want their videos to
+            feel bigger than content, from brands and musicians to YouTubers and
+            influencers, focused on cinematic pacing, color, and atmosphere.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">
