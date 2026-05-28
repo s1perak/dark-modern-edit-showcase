@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import portrait from "@/assets/robert-portrait.jpg";
 
 const software = ["Premiere Pro", "After Effects", "DaVinci Resolve", "Photoshop"];
 const stats = [
@@ -45,22 +44,7 @@ function Counter({ to, suffix }: { to: number; suffix: string }) {
 export function About() {
   return (
     <section id="about" className="relative px-6 py-32">
-      <div className="mx-auto grid max-w-7xl items-center gap-16 md:grid-cols-2">
-        <div className="relative">
-          <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/30 to-accent/30 blur-3xl" />
-          <div className="relative overflow-hidden rounded-3xl border border-border/40">
-            <img
-              src={portrait}
-              alt="Portrait of Robert at his editing suite"
-              loading="lazy"
-              width={1024}
-              height={1280}
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent" />
-          </div>
-        </div>
-
+      <div className="mx-auto max-w-3xl">
         <div>
           <p className="mb-3 text-[11px] uppercase tracking-[0.3em] text-primary">
             About
