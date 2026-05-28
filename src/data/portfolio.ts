@@ -29,7 +29,7 @@ export const projects: Project[] = [
     title: "Showreel",
     category: "Showreel",
     thumbnail: thumb1,
-    videoUrl: "https://player.vimeo.com/video/1188229541?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1",
+    videoUrl: "https://player.vimeo.com/video/1188229541?background=1&autoplay=1&muted=1&loop=0",
     videoType: "vimeo",
     description: "Robert's latest showreel — cinematic edits across film, music and brand work.",
   },
