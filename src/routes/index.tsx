@@ -6,7 +6,6 @@ import { About } from "@/components/site/About";
 import { Services } from "@/components/site/Services";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
-import { AudioToggle } from "@/components/site/AudioToggle";
 import { LoadingScreen } from "@/components/site/LoadingScreen";
 import { Toaster } from "@/components/ui/sonner";
 
@@ -41,7 +40,6 @@ function Index() {
       <Services />
       <Contact />
       <Footer />
-      <AudioToggle />
       <Toaster />
     </main>
   );
