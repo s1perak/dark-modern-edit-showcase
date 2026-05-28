@@ -26,12 +26,12 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "p1",
-    title: "Neon Horizons",
-    category: "Short Film",
+    title: "Showreel",
+    category: "Showreel",
     thumbnail: thumb1,
-    videoUrl: "https://www.youtube.com/embed/aqz-KE-bpKQ",
-    videoType: "youtube",
-    description: "A cinematic short exploring light, motion and memory.",
+    videoUrl: "https://player.vimeo.com/video/1188229541?title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1",
+    videoType: "vimeo",
+    description: "Robert's latest showreel — cinematic edits across film, music and brand work.",
   },
   {
     id: "p2",
