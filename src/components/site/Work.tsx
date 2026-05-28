@@ -54,8 +54,7 @@ export function Work() {
             </h2>
           </div>
           <p className="max-w-sm text-sm text-muted-foreground">
-            A small selection of recent edits across film, music and commercial work.
-            Click any thumbnail to watch.
+            Recent YouTube edits showcasing my work. Click any thumbnail to watch.
           </p>
         </div>
 
