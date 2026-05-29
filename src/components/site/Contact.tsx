@@ -61,7 +61,7 @@ export function Contact() {
             <a
               href="https://www.linkedin.com/in/robert-blazevic-fx/"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener"
               className="group flex items-center justify-between rounded-2xl glass px-5 py-4 transition-all hover:border-primary/40"
             >
               <span className="flex items-center gap-3">
