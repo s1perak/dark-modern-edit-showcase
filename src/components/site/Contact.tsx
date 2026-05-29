@@ -37,12 +37,12 @@ export function Contact() {
 
           <div className="mt-10 space-y-4">
             <a
-              href="mailto:hello@robert.edit"
+              href="mailto:r.blazevic@icloud.com"
               className="group flex items-center justify-between rounded-2xl glass px-5 py-4 transition-all hover:border-primary/40 hover:shadow-[var(--shadow-glow)]"
             >
               <span className="flex items-center gap-3">
                 <Mail size={18} className="text-primary" />
-                hello@robert.edit
+                r.blazevic@icloud.com
               </span>
               <ArrowUpRight size={16} className="text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
@@ -59,14 +59,14 @@ export function Contact() {
               <ArrowUpRight size={16} className="text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/in/robert-blazevic-fx/"
               target="_blank"
               rel="noreferrer"
               className="group flex items-center justify-between rounded-2xl glass px-5 py-4 transition-all hover:border-primary/40"
             >
               <span className="flex items-center gap-3">
                 <Linkedin size={18} className="text-primary" />
-                Robert Editor
+                Robert Blazevic
               </span>
               <ArrowUpRight size={16} className="text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
             </a>
