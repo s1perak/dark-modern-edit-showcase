@@ -28,11 +28,9 @@ export function Hero() {
             Video Editor · Available for projects
           </div>
           <h1 className="text-5xl font-bold leading-[0.95] tracking-tight text-foreground sm:text-7xl md:text-8xl">
-            I Create{" "}
-            <span className="text-gradient">Cinematic</span>
+            <span className="text-gradient">Crafting</span> Stories
             <br />
-            Stories Through{" "}
-            <span className="text-gradient">Editing</span>
+            Frame by <span className="text-gradient">Frame</span>
           </h1>
           <p className="mt-8 max-w-xl text-base text-muted-foreground sm:text-lg">
             I'm Robert — a video editor for creators who want their videos to
