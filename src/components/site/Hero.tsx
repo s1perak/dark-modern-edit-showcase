@@ -32,7 +32,7 @@ export function Hero() {
             <span className="text-gradient">Cinematic</span>
             <br />
             Stories Through{" "}
-            <span className="italic font-light text-muted-foreground">Editing</span>
+            <span className="text-gradient">Editing</span>
           </h1>
           <p className="mt-8 max-w-xl text-base text-muted-foreground sm:text-lg">
             I'm Robert — a video editor for creators who want their videos to
