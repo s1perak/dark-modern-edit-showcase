@@ -26,7 +26,7 @@ export function Navbar() {
           <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-primary to-accent text-xs font-bold text-primary-foreground shadow-[var(--shadow-glow)]">
             R
           </span>
-          <span className="text-foreground">Robert<span className="text-muted-foreground">.edit</span></span>
+          <span className="text-foreground">Robert<span className="text-muted-foreground">.Blazevic</span></span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
