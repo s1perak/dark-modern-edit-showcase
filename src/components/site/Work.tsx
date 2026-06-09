@@ -8,6 +8,7 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
     <div className="group">
       <button
         onClick={onOpen}
+        aria-label={`Watch ${project.title}`}
         className="relative block aspect-video w-full overflow-hidden rounded-2xl border border-border/40 bg-card glow-hover"
       >
         <img
