@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import { X } from "lucide-react";
 import type { Project } from "@/data/portfolio";
 
 export function VideoModal({
@@ -28,17 +27,11 @@ export function VideoModal({
       onClick={onClose}
     >
       <div
-        className="group relative w-full max-w-4xl aspect-video overflow-hidden rounded-2xl border border-border/40 bg-black shadow-[var(--shadow-elegant)]"
+        className="relative w-full max-w-4xl rounded-2xl border border-border/40 bg-card shadow-[var(--shadow-elegant)]"
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          aria-label="Close"
-          onClick={onClose}
-          className="absolute right-3 top-3 z-50 grid h-9 w-9 place-items-center rounded-full glass text-foreground opacity-0 transition-opacity duration-200 group-hover:opacity-100 hover:text-primary"
-        >
-          <X size={16} />
-        </button>
-        {project.videoType === "mp4" ? (
+        <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl bg-black">
+          {project.videoType === "mp4" ? (
             <video
               src={project.videoUrl}
               controls
@@ -54,6 +47,14 @@ export function VideoModal({
               allowFullScreen
             />
           )}
+        </div>
+        <div className="border-t border-border/40 p-5">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-primary">
+            {project.category}
+          </p>
+          <h3 className="mt-1 text-xl font-semibold">{project.title}</h3>
+          <p className="mt-2 text-sm text-muted-foreground">{project.description}</p>
+        </div>
       </div>
     </div>
   );
