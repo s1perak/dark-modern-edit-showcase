@@ -28,17 +28,17 @@ export function VideoModal({
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl overflow-hidden rounded-2xl border border-border/40 bg-card shadow-[var(--shadow-elegant)]"
+        className="relative w-full max-w-4xl rounded-2xl border border-border/40 bg-card shadow-[var(--shadow-elegant)]"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           aria-label="Close"
           onClick={onClose}
-          className="absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full glass text-foreground transition-colors hover:text-primary"
+          className="absolute -right-3 -top-12 z-50 grid h-9 w-9 place-items-center rounded-full glass text-foreground transition-colors hover:text-primary"
         >
           <X size={16} />
         </button>
-        <div className="aspect-video w-full bg-black">
+        <div className="aspect-video w-full overflow-hidden rounded-2xl bg-black">
           {project.videoType === "mp4" ? (
             <video
               src={project.videoUrl}
