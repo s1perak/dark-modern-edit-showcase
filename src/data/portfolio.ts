@@ -16,6 +16,7 @@ export type Project = {
   /** "mp4" | "youtube" | "vimeo" */
   videoType: "mp4" | "youtube" | "vimeo";
   description: string;
+  featured?: boolean;
 };
 
 /**
