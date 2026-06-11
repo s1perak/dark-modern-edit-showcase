@@ -4,6 +4,7 @@ import thumb3 from "@/assets/thumb-3.jpg";
 import thumb4 from "@/assets/thumb-4.jpg";
 import thumb5 from "@/assets/thumb-5.jpg";
 import thumb6 from "@/assets/thumb-6.jpg";
+import thumbShowreel from "@/assets/thumb-showreel.jpg";
 
 export type Project = {
   id: string;
@@ -24,6 +25,16 @@ export type Project = {
  * For MP4: direct .mp4 link.
  */
 export const projects: Project[] = [
+  {
+    id: "showreel",
+    title: "Showreel 2026",
+    category: "Featured",
+    thumbnail: thumbShowreel,
+    videoUrl: "https://player.vimeo.com/video/1200468231?h=3357fe356e&badge=0&title=0&byline=0&portrait=0&dnt=1",
+    videoType: "vimeo",
+    description: "A curated showcase of recent motion design, editing and storytelling work.",
+    featured: true,
+  },
   {
     id: "p1",
     title: "Dennis Schwer",
