@@ -28,7 +28,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "showreel",
-    title: "Showreel 2026",
+    title: "Cards",
     category: "Featured",
     thumbnail: thumbShowreel,
     videoUrl: "https://player.vimeo.com/video/1200468231?h=3357fe356e&badge=0&title=0&byline=0&portrait=0&dnt=1",
