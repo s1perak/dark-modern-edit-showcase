@@ -33,7 +33,7 @@ export const projects: Project[] = [
     thumbnail: thumbShowreel,
     videoUrl: "https://player.vimeo.com/video/1200468231?h=3357fe356e&badge=0&title=0&byline=0&portrait=0&dnt=1",
     videoType: "vimeo",
-    description: "A curated showcase of recent motion design, editing and storytelling work.",
+    description: "Two trading UI cards float into frame, backed by sound design that gives every movement its weight.",
     featured: true,
   },
   {
