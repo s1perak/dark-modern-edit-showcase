@@ -31,7 +31,7 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
           </p>
           <h3 className="mt-1 text-lg font-semibold tracking-tight">{project.title}</h3>
         </div>
-        <p className="hidden max-w-xs text-right text-sm text-muted-foreground md:block">
+        <p className="hidden max-w-sm text-right text-sm text-muted-foreground md:block">
           {project.description}
         </p>
       </div>
