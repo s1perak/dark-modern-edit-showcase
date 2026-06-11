@@ -61,7 +61,9 @@ export function Work() {
 
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
           {projects.map((p) => (
-            <ProjectCard key={p.id} project={p} onOpen={() => setActive(p)} />
+            <div key={p.id} className={p.featured ? "md:col-span-2" : undefined}>
+              <ProjectCard project={p} onOpen={() => setActive(p)} />
+            </div>
           ))}
         </div>
       </div>
