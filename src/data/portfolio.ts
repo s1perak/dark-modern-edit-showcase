@@ -41,7 +41,7 @@ export const projects: Project[] = [
     title: "Dennis Schwer",
     category: "YouTube",
     thumbnail: thumb1,
-    videoUrl: "https://player.vimeo.com/video/1188229541?background=1&autoplay=1&muted=1&loop=0",
+    videoUrl: "https://player.vimeo.com/video/1188229541?h=53bf850475&badge=0&title=0&byline=0&portrait=0&dnt=1",
     videoType: "vimeo",
     description: "Experimental motion graphics with a focus on timing, typography, and fluid animation.",
   },
