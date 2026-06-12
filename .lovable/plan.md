@@ -1,0 +1,3 @@
+Edit `public/favicon.png` using the image editor to expand the outer ring's gradient outward so the artwork fills the full square canvas (corner-to-corner), removing the transparent padding around the circle. Keep the existing colors, ring shape, and inner mark intact — only the outer gradient grows to occupy the square.
+
+No code changes; only the favicon PNG is replaced in place. `index.html` already references `/favicon.png`, so no markup updates are needed.
