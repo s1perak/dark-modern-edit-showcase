@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import logoAsset from "@/assets/logo.png.asset.json";
 
 const links = [
   { href: "#work", label: "Work" },
@@ -23,9 +24,7 @@ export function Navbar() {
         style={{ width: "min(96%, 72rem)" }}
       >
         <a href="#top" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span className="grid h-8 w-8 place-items-center rounded-full bg-gradient-to-br from-primary to-accent text-xs font-bold text-primary-foreground shadow-[var(--shadow-glow)]">
-            R
-          </span>
+          <img src={logoAsset.url} alt="Robert Blazevic logo" className="h-8 w-8 rounded-full shadow-[var(--shadow-glow)]" />
           <span className="text-foreground">Robert<span className="text-muted-foreground">.Blazevic</span></span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
