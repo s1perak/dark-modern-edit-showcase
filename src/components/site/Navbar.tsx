@@ -25,7 +25,7 @@ export function Navbar() {
       >
         <a href="#top" className="flex items-center gap-2 font-semibold tracking-tight">
           <img src={logoAsset.url} alt="Robert Blazevic logo" className="h-8 w-8 rounded-full shadow-[var(--shadow-glow)]" />
-          <span className="text-foreground">Robert</span> <span className="text-muted-foreground">Blazevic</span>
+          <span className="text-foreground">Robert</span> <span className="text-muted-foreground -ml-0.5">Blazevic</span>
         </a>
         <nav className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
