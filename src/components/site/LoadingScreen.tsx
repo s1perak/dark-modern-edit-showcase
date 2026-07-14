@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import logoAsset from "@/assets/logo.png.asset.json";
 
 export function LoadingScreen() {
   const [done, setDone] = useState(false);
@@ -12,9 +13,7 @@ export function LoadingScreen() {
       className={`fixed inset-0 z-[200] flex items-center justify-center bg-[var(--bg-deep)] transition-opacity duration-700 ${done ? "pointer-events-none opacity-0" : "opacity-100"}`}
     >
       <div className="text-center">
-        <div className="mx-auto mb-6 grid h-14 w-14 place-items-center rounded-full bg-gradient-to-br from-primary to-accent shadow-[var(--shadow-glow)] animate-pulse-glow">
-          <span className="font-bold text-primary-foreground">R</span>
-        </div>
+        <img src={logoAsset.url} alt="Robert Blazevic logo" className="mx-auto mb-6 h-14 w-14 rounded-full shadow-[var(--shadow-glow)] animate-pulse-glow" />
         <p className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground">
           Loading reel
         </p>
