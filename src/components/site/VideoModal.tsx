@@ -29,14 +29,14 @@ export function VideoModal({
       onClick={onClose}
     >
       <div
-        className={`relative w-full rounded-2xl border border-border/40 bg-card shadow-[var(--shadow-elegant)] ${
-          portrait ? "max-w-sm" : "max-w-4xl"
+        className={`relative flex w-full flex-col rounded-2xl border border-border/40 bg-card shadow-[var(--shadow-elegant)] ${
+          portrait ? "max-h-[calc(100dvh-2rem)] max-w-sm" : "max-w-4xl"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
         <div
           className={`relative w-full overflow-hidden rounded-t-2xl bg-black ${
-            portrait ? "aspect-[9/16]" : "aspect-video"
+            portrait ? "min-h-0 flex-1" : "aspect-video"
           }`}
         >
           {project.videoType === "mp4" ? (
