@@ -85,11 +85,8 @@ export function Work() {
         <div className="mt-28 border-t border-border/40 pt-16">
           <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
             <div>
-              <p className="mb-3 text-[11px] uppercase tracking-[0.3em] text-primary">
-                Short-form
-              </p>
               <h2 className="max-w-2xl text-3xl font-bold leading-[1] tracking-tight sm:text-5xl">
-                Vertical <span className="text-gradient">reels</span>
+                Short-form <span className="text-gradient">content</span>
               </h2>
             </div>
             <p className="max-w-sm text-sm text-muted-foreground">
