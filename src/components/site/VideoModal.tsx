@@ -29,14 +29,16 @@ export function VideoModal({
       onClick={onClose}
     >
       <div
-        className={`relative flex w-full flex-col rounded-2xl border border-border/40 bg-card shadow-[var(--shadow-elegant)] ${
-          portrait ? "max-h-[calc(100dvh-2rem)] max-w-sm" : "max-w-4xl"
+        className={`relative flex flex-col rounded-2xl border border-border/40 bg-card shadow-[var(--shadow-elegant)] ${
+          portrait ? "w-auto max-w-[min(24rem,90vw)]" : "w-full max-w-4xl"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
         <div
-          className={`relative w-full overflow-hidden rounded-t-2xl bg-black ${
-            portrait ? "min-h-0 flex-1" : "aspect-video"
+          className={`relative overflow-hidden rounded-t-2xl bg-black ${
+            portrait
+              ? "aspect-[9/16] h-[min(calc(100dvh-16rem),36rem)] w-auto"
+              : "aspect-video w-full"
           }`}
         >
           {project.videoType === "mp4" ? (
@@ -48,7 +50,7 @@ export function VideoModal({
             />
           ) : (
             <iframe
-              src={`${project.videoUrl}?autoplay=1`}
+              src={`${project.videoUrl}${project.videoUrl.includes("?") ? "&" : "?"}autoplay=1`}
               title={project.title}
               className="absolute inset-0 h-full w-full"
               allow="autoplay; fullscreen; picture-in-picture"
