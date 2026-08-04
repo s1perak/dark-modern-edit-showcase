@@ -21,16 +21,24 @@ export function VideoModal({
 
   if (!project) return null;
 
+  const portrait = project.orientation === "portrait";
+
   return (
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-md animate-fade-up"
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-4xl rounded-2xl border border-border/40 bg-card shadow-[var(--shadow-elegant)]"
+        className={`relative w-full rounded-2xl border border-border/40 bg-card shadow-[var(--shadow-elegant)] ${
+          portrait ? "max-w-sm" : "max-w-4xl"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative aspect-video w-full overflow-hidden rounded-t-2xl bg-black">
+        <div
+          className={`relative w-full overflow-hidden rounded-t-2xl bg-black ${
+            portrait ? "aspect-[9/16]" : "aspect-video"
+          }`}
+        >
           {project.videoType === "mp4" ? (
             <video
               src={project.videoUrl}
