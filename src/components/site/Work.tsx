@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { Play } from "lucide-react";
-import { projects, type Project } from "@/data/portfolio";
+import { projects, shortformProjects, type Project } from "@/data/portfolio";
 import { VideoModal } from "./VideoModal";
 
 function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void }) {
+  const portrait = project.orientation === "portrait";
   return (
     <div className="group">
       <button
         onClick={onOpen}
         aria-label={`Watch ${project.title}`}
-        className="relative block aspect-video w-full overflow-hidden rounded-2xl border border-border/40 bg-card glow-hover"
+        className={`relative block w-full overflow-hidden rounded-2xl border border-border/40 bg-card glow-hover ${
+          portrait ? "aspect-[9/16]" : "aspect-video"
+        }`}
       >
         <img
           src={project.thumbnail}
@@ -24,14 +27,26 @@ function ProjectCard({ project, onOpen }: { project: Project; onOpen: () => void
           </span>
         </div>
       </button>
-      <div className="mt-4 flex items-baseline justify-between gap-4 px-1">
+      <div
+        className={
+          portrait
+            ? "mt-4 px-1"
+            : "mt-4 flex items-baseline justify-between gap-4 px-1"
+        }
+      >
         <div>
           <p className="text-[10px] uppercase tracking-[0.25em] text-primary">
             {project.category}
           </p>
           <h3 className="mt-1 text-lg font-semibold tracking-tight">{project.title}</h3>
         </div>
-        <p className="hidden max-w-sm text-right text-sm text-muted-foreground md:block">
+        <p
+          className={
+            portrait
+              ? "mt-2 text-sm text-muted-foreground"
+              : "hidden max-w-sm text-right text-sm text-muted-foreground md:block"
+          }
+        >
           {project.description}
         </p>
       </div>
@@ -65,6 +80,28 @@ export function Work() {
               <ProjectCard project={p} onOpen={() => setActive(p)} />
             </div>
           ))}
+        </div>
+
+        <div className="mt-28 border-t border-border/40 pt-16">
+          <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <p className="mb-3 text-[11px] uppercase tracking-[0.3em] text-primary">
+                Short-form
+              </p>
+              <h2 className="max-w-2xl text-3xl font-bold leading-[1] tracking-tight sm:text-5xl">
+                Vertical <span className="text-gradient">reels</span>
+              </h2>
+            </div>
+            <p className="max-w-sm text-sm text-muted-foreground">
+              Cut from long-form client footage for Reels, Shorts and TikTok.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:max-w-2xl">
+            {shortformProjects.map((p) => (
+              <ProjectCard key={p.id} project={p} onOpen={() => setActive(p)} />
+            ))}
+          </div>
         </div>
       </div>
 
