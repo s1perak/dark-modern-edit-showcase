@@ -127,8 +127,6 @@ export const shortformProjects: Project[] = [
   },
 ];
 
-const _legacyShowreelUrl =
-  "https://cdn.coverr.co/videos/coverr-cinematic-aerial-shot-of-a-city-at-night-1572/1080p.mp4";
 
 export type Testimonial = {
   name: string;
