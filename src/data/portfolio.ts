@@ -5,6 +5,8 @@ import thumb4 from "@/assets/thumb-4.jpg";
 import thumb5 from "@/assets/thumb-5.jpg";
 import thumb6 from "@/assets/thumb-6.jpg";
 import thumbShowreel from "@/assets/thumb-showreel.jpg";
+import thumbShort1 from "@/assets/thumb-short-1.jpg";
+import thumbShort2 from "@/assets/thumb-short-2.jpg";
 
 export type Project = {
   id: string;
@@ -17,6 +19,8 @@ export type Project = {
   videoType: "mp4" | "youtube" | "vimeo";
   description: string;
   featured?: boolean;
+  /** "landscape" (16:9, default) | "portrait" (9:16) */
+  orientation?: "landscape" | "portrait";
 };
 
 /**
@@ -94,6 +98,35 @@ export const projects: Project[] = [
 
 export const showreelUrl =
   "https://cdn.coverr.co/videos/coverr-cinematic-aerial-shot-of-a-city-at-night-1572/1080p.mp4";
+
+/** Vertical short-form edits, shown in their own row below the main grid. */
+export const shortformProjects: Project[] = [
+  {
+    id: "s1",
+    title: "Client Reel 01",
+    category: "Shortform",
+    thumbnail: thumbShort1,
+    videoUrl:
+      "https://player.vimeo.com/video/1215330895?h=0795fe1591&title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1",
+    videoType: "vimeo",
+    orientation: "portrait",
+    description:
+      "Edited from long-form client calls with a strong opening hook, engaging pacing, dynamic captions and sound design.",
+  },
+  {
+    id: "s2",
+    title: "Client Reel 02",
+    category: "Shortform",
+    thumbnail: thumbShort2,
+    videoUrl:
+      "https://player.vimeo.com/video/1215330894?h=b7142e2bc8&title=0&byline=0&portrait=0&badge=0&autopause=0&dnt=1",
+    videoType: "vimeo",
+    orientation: "portrait",
+    description:
+      "Edited from long-form client calls with a strong opening hook, engaging pacing, dynamic captions and sound design.",
+  },
+];
+
 
 export type Testimonial = {
   name: string;
