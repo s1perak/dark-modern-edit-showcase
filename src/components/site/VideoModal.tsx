@@ -56,7 +56,7 @@ export function VideoModal({
             />
           )}
         </div>
-        <div className="border-t border-border/40 p-5">
+        <div className="flex-none border-t border-border/40 p-5">
           <p className="text-[11px] uppercase tracking-[0.2em] text-primary">
             {project.category}
           </p>
