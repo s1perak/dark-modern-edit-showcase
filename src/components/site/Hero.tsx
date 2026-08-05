@@ -1,68 +1,80 @@
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { showreelUrl } from "@/data/portfolio";
+
+const disciplines = ["Editing", "Motion Design", "Sound Design", "Color"];
 
 export function Hero() {
   return (
-    <section
-      id="top"
-      className="relative grain min-h-screen w-full overflow-hidden"
-    >
-      {/* Background showreel */}
+    <section id="top" className="relative grain min-h-[100svh] w-full overflow-hidden">
       <video
-        className="absolute inset-0 h-full w-full object-cover opacity-50"
+        className="absolute inset-0 h-full w-full object-cover opacity-40 grayscale"
         autoPlay
         muted
         loop
         playsInline
-        poster=""
         src={showreelUrl}
       />
-      {/* Dark gradient wash */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-deep)]/60 via-[var(--bg-deep)]/80 to-[var(--bg-deep)]" />
-      <div className="absolute inset-0" style={{ background: "var(--gradient-radial)" }} />
+      <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-deep)]/70 via-[var(--bg-deep)]/85 to-[var(--bg-deep)]" />
+      <div className="absolute inset-0 dotgrid opacity-[0.35] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,transparent_20%,black)]" />
 
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-32 pb-24">
-        <div className="max-w-4xl animate-fade-up">
-          <div className="mb-8 inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
-            Video Editor · Available for projects
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[84rem] flex-col justify-end px-6 pb-14 pt-36">
+        <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-7 animate-fade-up">
+            <div className="mb-8 inline-flex items-center gap-2.5 text-[10px] uppercase tracking-[0.35em] text-muted-foreground">
+              <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
+              Available for projects — 2026
+            </div>
+            <h1 className="text-[13vw] font-medium leading-[0.86] tracking-[-0.05em] text-foreground sm:text-[9vw] lg:text-[7.4rem]">
+              Crafting Stories
+              <br />
+              <span className="text-muted-foreground/70">Frame by</span>{" "}
+              <span className="text-gradient">Frame</span>
+            </h1>
           </div>
-          <h1 className="text-5xl font-bold leading-[0.95] tracking-tight text-foreground sm:text-7xl md:text-8xl">
-            <span className="text-gradient">Crafting</span> Stories
-            <br />
-            Frame by <span className="text-gradient">Frame</span>
-          </h1>
-          <p className="mt-8 max-w-xl text-base text-muted-foreground sm:text-lg">
-            I'm Robert — a video editor for creators who want their videos to
-            feel bigger than content, from brands and musicians to YouTubers and
-            influencers, focused on cinematic pacing, color, and atmosphere.
-          </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <a
-              href="#work"
-              className="group inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-primary to-accent px-7 py-4 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-all hover:shadow-[var(--shadow-glow-purple)] hover:-translate-y-0.5"
-            >
-              View Work
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-3 rounded-full glass px-7 py-4 text-sm font-semibold text-foreground transition-all hover:border-primary/40"
-            >
-              <Play size={14} /> Contact Me
-            </a>
+          <div className="lg:col-span-5 lg:pb-4 animate-fade-up">
+            <p className="max-w-md text-[15px] leading-relaxed text-muted-foreground">
+              <span className="text-foreground">I'm Robert</span> — a video editor
+              for creators who want their videos to feel bigger than content, from
+              brands and musicians to YouTubers and influencers, focused on
+              cinematic pacing, color, and atmosphere.
+            </p>
+            <div className="mt-8 hairline" />
+            <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <a
+                href="#work"
+                className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-[13px] font-medium text-primary-foreground transition-transform hover:-translate-y-0.5"
+              >
+                View Work
+                <ArrowUpRight size={14} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </a>
+              <a
+                href="#contact"
+                className="text-[13px] text-muted-foreground underline-offset-4 transition-colors hover:text-foreground hover:underline"
+              >
+                Start a project
+              </a>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2 text-muted-foreground">
-        <div className="flex flex-col items-center gap-2 text-[10px] uppercase tracking-[0.3em]">
-          Scroll
-          <div className="relative h-10 w-px overflow-hidden bg-border">
-            <div className="absolute inset-x-0 h-3 bg-gradient-to-b from-primary to-transparent animate-scroll-indicator" />
+        <div className="mt-14 hairline" />
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
+            {disciplines.map((d, i) => (
+              <span key={d} className="flex items-center gap-3">
+                {i > 0 && <span className="text-muted-foreground/40">/</span>}
+                {d}
+              </span>
+            ))}
           </div>
+          <a
+            href="#work"
+            aria-label="Scroll to work"
+            className="grid h-10 w-10 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground"
+          >
+            <ArrowDown size={15} />
+          </a>
         </div>
       </div>
     </section>

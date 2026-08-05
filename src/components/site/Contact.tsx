@@ -1,48 +1,49 @@
-import { Mail, Instagram, Linkedin, ArrowUpRight } from "lucide-react";
+import { Mail, Linkedin, ArrowUpRight } from "lucide-react";
 
 export function Contact() {
   return (
-    <section id="contact" className="relative px-6 py-32">
-      <div
-        className="absolute inset-0 -z-10 opacity-60"
-        style={{ background: "var(--gradient-radial)" }}
-      />
-      <div className="mx-auto max-w-3xl text-center">
-        <div>
-          <p className="mb-3 text-[11px] uppercase tracking-[0.3em] text-primary">
-            Get in touch
-          </p>
-          <h2 className="text-4xl font-bold leading-[1] tracking-tight sm:text-6xl">
+    <section id="contact" className="relative overflow-hidden px-6 py-28 sm:py-40">
+      <div className="absolute inset-0 -z-10" style={{ background: "var(--gradient-radial)" }} />
+      <div className="mx-auto max-w-[84rem]">
+        <div className="border-t border-border/60 pt-14">
+          <p className="eyebrow mb-8">(04) — Get in touch</p>
+          <h2 className="max-w-4xl text-5xl leading-[0.95] tracking-tight sm:text-8xl">
             Let's create something{" "}
-            <span className="text-gradient">cinematic</span>.
+            <span className="text-gradient">cinematic</span>
           </h2>
-          <p className="mt-6 mx-auto max-w-md text-muted-foreground">
-            Tell me about your project — film, brand, music or otherwise.
-            I reply within 24 hours.
+          <p className="mt-8 max-w-md text-[15px] leading-relaxed text-muted-foreground">
+            Tell me about your project — film, brand, music or otherwise. I reply
+            within 24 hours.
           </p>
 
-          <div className="mt-10 space-y-4 text-left">
+          <div className="mt-14 grid gap-px overflow-hidden border-t border-border/60 sm:grid-cols-2">
             <a
               href="mailto:r.blazevic@icloud.com"
-              className="group flex items-center justify-between rounded-2xl glass px-5 py-4 transition-all hover:border-primary/40 hover:shadow-[var(--shadow-glow)]"
+              className="group flex items-center justify-between border-b border-border/60 py-7 pr-6 transition-colors hover:bg-white/[0.03] sm:border-r sm:pl-6"
             >
-              <span className="flex items-center gap-3">
-                <Mail size={18} className="text-primary" />
-                r.blazevic@icloud.com
+              <span className="flex items-center gap-4">
+                <Mail size={16} className="text-muted-foreground" />
+                <span className="text-base sm:text-lg">r.blazevic@icloud.com</span>
               </span>
-              <ArrowUpRight size={16} className="text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <ArrowUpRight
+                size={18}
+                className="text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-foreground"
+              />
             </a>
             <a
               href="https://www.linkedin.com/in/robert-blazevic-fx/"
               target="_blank"
               rel="noopener"
-              className="group flex items-center justify-between rounded-2xl glass px-5 py-4 transition-all hover:border-primary/40"
+              className="group flex items-center justify-between border-b border-border/60 py-7 pr-6 transition-colors hover:bg-white/[0.03] sm:pl-6"
             >
-              <span className="flex items-center gap-3">
-                <Linkedin size={18} className="text-primary" />
-                Robert Blazevic
+              <span className="flex items-center gap-4">
+                <Linkedin size={16} className="text-muted-foreground" />
+                <span className="text-base sm:text-lg">Robert Blazevic</span>
               </span>
-              <ArrowUpRight size={16} className="text-muted-foreground transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <ArrowUpRight
+                size={18}
+                className="text-muted-foreground transition-transform group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-foreground"
+              />
             </a>
           </div>
         </div>
