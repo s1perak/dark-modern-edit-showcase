@@ -18,7 +18,7 @@ export function Navbar() {
           <img
             src="/favicon.png"
             alt="Robert Blazevic logo"
-            className="h-7 w-7 rounded-full"
+            className="h-8 w-8 rounded-full"
           />
           <span className="text-foreground">Robert</span>
           <span className="-ml-1.5 text-muted-foreground">Blazevic</span>

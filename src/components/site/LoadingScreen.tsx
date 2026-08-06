@@ -17,7 +17,7 @@ export function LoadingScreen() {
         <img
           src="/favicon.png"
           alt="Robert Blazevic logo"
-          className="mx-auto mb-7 h-12 w-12 rounded-full animate-pulse-glow"
+          className="mx-auto mb-7 h-14 w-14 rounded-full animate-pulse-glow"
         />
         <p className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground">
           Loading reel
