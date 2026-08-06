@@ -34,10 +34,8 @@ export function Hero() {
 
           <div className="lg:col-span-5 lg:pb-4 animate-fade-up">
             <p className="max-w-md text-[15px] leading-relaxed text-muted-foreground">
-              <span className="text-foreground">I'm Robert</span> — a video editor
-              for creators who want their videos to feel bigger than content, from
-              brands and musicians to YouTubers and influencers, focused on
-              cinematic pacing, color, and atmosphere.
+              <span className="text-foreground">I'm Robert</span> — I help creators,
+              brands and influencers turn content into cinematic stories.
             </p>
             <div className="mt-8 hairline" />
             <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3">
