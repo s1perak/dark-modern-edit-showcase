@@ -32,7 +32,7 @@ export function Hero() {
             </h1>
           </div>
 
-          <div className="lg:col-span-5 lg:pb-4 animate-fade-up">
+          <div className="lg:col-span-5 lg:pb-4 lg:pt-6 animate-fade-up">
             <p className="max-w-md text-[15px] leading-relaxed text-muted-foreground">
               <span className="text-foreground">I'm Robert</span> — I help creators,
               brands and influencers turn content into cinematic stories.
