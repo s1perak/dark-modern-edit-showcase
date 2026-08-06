@@ -12,8 +12,7 @@ export function Contact() {
             <span className="text-gradient">Happen</span>.
           </h2>
           <p className="mt-8 max-w-md text-[15px] leading-relaxed text-muted-foreground">
-            Tell me about your project — film, brand, music or otherwise. I reply
-            within 24 hours.
+            Tell me about your project. I reply within 24 hours.
           </p>
 
           <div className="mt-14 grid gap-px overflow-hidden border-t border-border/60 sm:grid-cols-2">

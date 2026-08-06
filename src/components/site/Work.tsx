@@ -64,8 +64,6 @@ export function Work() {
             <p className="eyebrow mb-5">(01) — Selected work</p>
             <h2 className="max-w-2xl text-5xl leading-[0.95] tracking-tight sm:text-7xl">
               Selected <span className="text-gradient">cuts</span>
-              <br />
-              from the reel
             </h2>
           </div>
           <p className="max-w-xs text-[13px] leading-relaxed text-muted-foreground">
