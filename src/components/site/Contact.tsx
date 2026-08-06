@@ -8,8 +8,8 @@ export function Contact() {
         <div className="border-t border-border/60 pt-14">
           <p className="eyebrow mb-8">(04) — Get in touch</p>
           <h2 className="max-w-4xl text-5xl leading-[0.95] tracking-tight sm:text-8xl">
-            Let's create something{" "}
-            <span className="text-gradient">cinematic</span>
+            Let's Make It{" "}
+            <span className="text-gradient">Happen</span>.
           </h2>
           <p className="mt-8 max-w-md text-[15px] leading-relaxed text-muted-foreground">
             Tell me about your project — film, brand, music or otherwise. I reply

@@ -14,7 +14,7 @@ export function About() {
 
           <div className="lg:col-span-8">
             <h2 className="max-w-3xl text-4xl leading-[1.05] tracking-tight sm:text-6xl">
-              Editing is the final <span className="text-gradient">performance</span>.
+              About <span className="text-gradient">me</span>.
             </h2>
             <p className="mt-8 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
               I'm Robert, a video editor based in Nuremberg, Germany. I work with

@@ -25,10 +25,10 @@ export function Hero() {
               Available for projects — 2026
             </div>
             <h1 className="text-[13vw] font-medium leading-[0.86] tracking-[-0.05em] text-foreground sm:text-[9vw] lg:text-[7.4rem]">
-              Crafting Stories
+              Videos
               <br />
-              <span className="text-muted-foreground/70">Frame by</span>{" "}
-              <span className="text-gradient">Frame</span>
+              <span className="text-muted-foreground/70">Designed to</span>{" "}
+              <span className="text-gradient">Perform</span>
             </h1>
           </div>
 
