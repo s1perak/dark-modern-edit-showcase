@@ -152,6 +152,8 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    display: inline-block;
+    padding-right: 0.06em;
   }
   .eyebrow {
     font-size: 10px;
