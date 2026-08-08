@@ -12,25 +12,27 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 export default function App() {
   useScrollReveal();
   return (
-    <main className="relative bg-[var(--bg-deep)] text-foreground">
-      <div
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[calc(100svh+12rem)] dotgrid opacity-40"
-        style={{
-          maskImage:
-            "linear-gradient(to bottom, transparent 0%, black 12%, black 78%, transparent 100%)",
-          WebkitMaskImage:
-            "linear-gradient(to bottom, transparent 0%, black 12%, black 78%, transparent 100%)",
-        }}
-      />
-      <LoadingScreen />
-      <Navbar />
-      <Hero />
-      <Work />
-      <About />
-      <Services />
-      <Contact />
-      <Footer />
-      <Toaster />
+    <main className="relative text-foreground">
+      <div className="relative z-10">
+        <LoadingScreen />
+        <Navbar />
+        <Hero />
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-[calc(100svh+12rem)] dotgrid"
+          style={{
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, black 10%, black 80%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0%, black 10%, black 80%, transparent 100%)",
+          }}
+        />
+        <Work />
+        <About />
+        <Services />
+        <Contact />
+        <Footer />
+        <Toaster />
+      </div>
     </main>
   );
 }
