@@ -13,6 +13,15 @@ export default function App() {
   useScrollReveal();
   return (
     <main className="relative bg-[var(--bg-deep)] text-foreground">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[calc(100svh+12rem)] dotgrid opacity-40"
+        style={{
+          maskImage:
+            "linear-gradient(to bottom, transparent 0%, black 12%, black 78%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent 0%, black 12%, black 78%, transparent 100%)",
+        }}
+      />
       <LoadingScreen />
       <Navbar />
       <Hero />
