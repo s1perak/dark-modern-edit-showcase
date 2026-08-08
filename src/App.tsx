@@ -14,7 +14,7 @@ export default function App() {
   return (
     <main className="relative bg-[var(--bg-deep)] text-foreground">
       <div
-        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[calc(100svh+12rem)] dotgrid opacity-70"
+        className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[calc(100svh+12rem)] dotgrid"
         style={{
           maskImage:
             "linear-gradient(to bottom, transparent 0%, black 10%, black 80%, transparent 100%)",

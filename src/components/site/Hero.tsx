@@ -14,7 +14,7 @@ export function Hero() {
         playsInline
         src={showreelUrl}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-deep)]/70 via-[var(--bg-deep)]/85 to-[var(--bg-deep)]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-deep)]/55 via-[var(--bg-deep)]/75 to-[var(--bg-deep)]" />
       
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[84rem] flex-col justify-end px-6 pb-14 pt-36">
