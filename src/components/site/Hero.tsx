@@ -15,7 +15,7 @@ export function Hero() {
         src={showreelUrl}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[var(--bg-deep)]/70 via-[var(--bg-deep)]/85 to-[var(--bg-deep)]" />
-      <div className="absolute inset-0 dotgrid opacity-[0.35] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,transparent_20%,black)]" />
+      <div className="absolute inset-x-0 top-0 bottom-[8.5rem] dotgrid opacity-[0.35] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,transparent_20%,black)]" />
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-[84rem] flex-col justify-end px-6 pb-14 pt-36">
         <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
