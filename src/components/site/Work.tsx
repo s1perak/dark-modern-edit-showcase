@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+
 import { projects, shortformProjects, type Project } from "@/data/portfolio";
 import { VideoModal } from "./VideoModal";
 
