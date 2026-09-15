@@ -4,6 +4,7 @@ import thumb3 from "@/assets/thumb-3.jpg";
 import thumb4 from "@/assets/thumb-4.jpg";
 import thumb5 from "@/assets/thumb-5.jpg";
 import thumb6 from "@/assets/thumb-6.jpg";
+import thumbSummer from "@/assets/thumb-summer.jpg";
 import thumbShowreel from "@/assets/thumb-showreel.jpg";
 import thumbShort1 from "@/assets/thumb-short-1.jpg";
 import thumbShort2 from "@/assets/thumb-short-2.jpg";
@@ -39,6 +40,15 @@ export const projects: Project[] = [
     videoType: "vimeo",
     description: "Two trading UI cards float into frame, backed by sound design that gives every movement its weight.",
     featured: true,
+  },
+  {
+    id: "summer",
+    title: "Summer",
+    category: "Private Project",
+    thumbnail: thumbSummer,
+    videoUrl: "https://www.youtube-nocookie.com/embed/EJ-OfA1w57E?rel=0&modestbranding=1&playsinline=1",
+    videoType: "youtube",
+    description: "Recap of my vacation in Croatia",
   },
   {
     id: "p1",
