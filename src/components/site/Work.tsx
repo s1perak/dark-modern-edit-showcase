@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight } from "lucide-react";
+
 import { projects, shortformProjects, type Project } from "@/data/portfolio";
 import { VideoModal } from "./VideoModal";
 
@@ -31,10 +31,6 @@ function ProjectCard({
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
         <span className="absolute left-4 top-4 text-[10px] uppercase tracking-[0.3em] text-foreground/70">
           {String(index + 1).padStart(2, "0")}
-        </span>
-        <span className="absolute bottom-4 right-4 inline-flex items-center gap-2 rounded-full glass px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-foreground opacity-0 transition-all duration-500 group-hover:opacity-100">
-          Watch
-          <ArrowUpRight size={13} />
         </span>
       </button>
 
