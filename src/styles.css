@@ -277,7 +277,7 @@
 .mosaic-8 { grid-column: span 12; grid-row: span 4; }
 .mosaic-caption { background: linear-gradient(to top, color-mix(in srgb, var(--background) 92%, transparent), transparent); }
 .short-mosaic { display: grid; grid-template-columns: repeat(2, minmax(0, 260px)); gap: 14px; }
-.short-mosaic .mosaic-item { aspect-ratio: 9/16; }
+.short-mosaic .mosaic-item { grid-column: auto; grid-row: auto; aspect-ratio: 9/16; }
 section[id] { scroll-margin-top: 100px; }
 .service-item { min-height: 270px; }
 .service-item h3 { font-weight: 600; }

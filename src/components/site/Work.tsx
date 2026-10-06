@@ -13,7 +13,6 @@ function ProjectCard({
   index: number;
   onOpen: () => void;
 }) {
-  const portrait = project.orientation === "portrait";
   return (
     <article className={`mosaic-item mosaic-${index + 1} group`}>
       <Button
