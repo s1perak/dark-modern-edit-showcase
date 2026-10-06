@@ -1,4 +1,4 @@
-# Redesign
-- [x] Apply the selected Editorial Mono direction across the portfolio.
-- [x] Replace Commercial Editing with Sound Design.
-- [x] Verify video modals, contact links, navigation, and page layout.
+# Complete portfolio overhaul
+- [ ] Choose a wholly new direction using Butter and the uploaded references, charcoal and cream, Instrument Serif and Work Sans, and an editorial index layout.
+- [ ] Implement the chosen composition throughout the portfolio while preserving all content, project order, videos, and contact actions.
+- [ ] Verify every video modal, navigation, contact links, and layout.
