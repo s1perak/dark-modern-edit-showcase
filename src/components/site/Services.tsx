@@ -13,8 +13,8 @@ export function Services() {
       <div className="site-container">
         <div className="mb-14 flex flex-col items-start justify-between gap-6 border-t border-border/60 pt-14 md:flex-row md:items-end">
           <div>
-            <p className="eyebrow mb-5">(03) — Services</p>
-            <h2 className="section-title">
+            <p className="eyebrow mb-5">CAPABILITIES // 03</p>
+            <h2 className="section-title uppercase">
               What I do, <span className="text-gradient">end to end</span>
             </h2>
           </div>

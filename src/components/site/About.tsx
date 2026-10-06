@@ -4,16 +4,16 @@ export function About() {
   return (
     <section id="about" className="relative py-20 sm:py-28">
       <div className="site-container">
-        <div className="grid gap-12 border-t border-border/60 pt-14 lg:grid-cols-12">
+        <div className="grid gap-12 border-t border-border pt-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="eyebrow">(02) — About</p>
+            <p className="eyebrow">PROFILE // 02</p>
             <p className="mt-6 text-[13px] uppercase tracking-[0.25em] text-muted-foreground">
               Nuremberg, Germany
             </p>
           </div>
 
           <div className="lg:col-span-8">
-            <h2 className="section-title max-w-3xl">
+            <h2 className="section-title max-w-3xl uppercase">
               About <span className="text-gradient">me</span>.
             </h2>
             <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-2xl">

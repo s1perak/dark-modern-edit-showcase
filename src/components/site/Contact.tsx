@@ -6,8 +6,8 @@ export function Contact() {
     <section id="contact" className="relative overflow-hidden py-20 sm:py-28">
       <div className="site-container">
         <div className="border-t border-border/60 pt-14">
-          <p className="eyebrow mb-8">(04) — Get in touch</p>
-          <h2 className="contact-title max-w-5xl">
+           <p className="eyebrow mb-8">NEW PROJECT // 04</p>
+           <h2 className="contact-title max-w-5xl uppercase">
             Let's Make It{" "}
             <span className="text-gradient">Happen</span>.
           </h2>
