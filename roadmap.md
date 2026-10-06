@@ -1,4 +1,4 @@
 # Redesign
-- [ ] Apply the selected Editorial Mono direction across the portfolio.
-- [ ] Replace Commercial Editing with Sound Design.
-- [ ] Verify video modals, contact links, navigation, and page layout.
+- [x] Apply the selected Editorial Mono direction across the portfolio.
+- [x] Replace Commercial Editing with Sound Design.
+- [x] Verify video modals, contact links, navigation, and page layout.
