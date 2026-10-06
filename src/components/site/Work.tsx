@@ -42,7 +42,7 @@ function ProjectCard({
             {project.category}
           </p>
         </div>
-        <p className="hidden max-w-xs text-right text-[13px] leading-relaxed text-muted-foreground md:block">
+        <p className={`hidden text-right text-[13px] leading-relaxed text-muted-foreground md:block ${project.featured ? "max-w-md" : "max-w-xs"}`}>
           {project.description}
         </p>
       </div>
