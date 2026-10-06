@@ -1,5 +1,5 @@
 const services = [
-  { title: "Commercial Editing", desc: "Brand films and product spots crafted with precision and pace." },
+  { title: "Sound Design", desc: "Immersive sound, precise accents and texture that give every movement its weight." },
   { title: "Short Form Content", desc: "Reels, TikToks and shorts engineered to stop the scroll." },
   { title: "YouTube Editing", desc: "Long-form edits with retention-led pacing and clean storytelling." },
   { title: "Color Grading", desc: "Cinematic looks and consistent grades across every frame." },
@@ -9,12 +9,12 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="relative px-6 py-28 sm:py-36">
-      <div className="mx-auto max-w-[84rem]">
+    <section id="services" className="relative py-20 sm:py-28">
+      <div className="site-container">
         <div className="mb-14 flex flex-col items-start justify-between gap-6 border-t border-border/60 pt-14 md:flex-row md:items-end">
           <div>
             <p className="eyebrow mb-5">(03) — Services</p>
-            <h2 className="text-4xl leading-[1] tracking-tight sm:text-6xl">
+            <h2 className="section-title">
               What I do, <span className="text-gradient">end to end</span>
             </h2>
           </div>
@@ -24,7 +24,7 @@ export function Services() {
           {services.map((s, i) => (
             <div
               key={s.title}
-              className="group relative border-b border-border/60 p-8 transition-colors duration-500 hover:bg-white/[0.03] sm:[&:nth-child(odd)]:border-r lg:[&:nth-child(3n+1)]:border-r lg:[&:nth-child(3n+2)]:border-r lg:[&:nth-child(3n)]:border-r-0"
+              className="service-item group relative border-b border-border p-8 transition-colors duration-500 hover:bg-secondary/50"
             >
               <span className="text-[10px] tracking-[0.3em] text-muted-foreground/60">
                 {String(i + 1).padStart(2, "0")}

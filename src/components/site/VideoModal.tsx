@@ -25,17 +25,20 @@ export function VideoModal({
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-md animate-fade-up"
+      role="dialog"
+      aria-modal="true"
+      aria-label={project.title}
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-background/90 p-4 backdrop-blur-md animate-fade-up"
       onClick={onClose}
     >
       <div
-        className={`relative flex flex-col rounded-2xl border border-border/40 bg-card shadow-[var(--shadow-elegant)] ${
+        className={`relative flex flex-col rounded-lg border border-border bg-card shadow-[var(--shadow-elegant)] ${
           portrait ? "w-auto max-w-[min(24rem,90vw)]" : "w-full max-w-4xl"
         }`}
         onClick={(e) => e.stopPropagation()}
       >
         <div
-          className={`relative overflow-hidden rounded-t-2xl bg-black ${
+          className={`relative overflow-hidden rounded-t-lg bg-background ${
             portrait
               ? "aspect-[9/16] h-[min(calc(100dvh-16rem),36rem)] w-auto"
               : "aspect-video w-full"
