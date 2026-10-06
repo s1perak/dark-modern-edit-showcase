@@ -64,25 +64,25 @@
 :root {
   --radius: 0.5rem;
   /* Monochrome premium palette — obsidian + bone */
-  --background: oklch(0.09 0.002 250);
-  --foreground: oklch(0.96 0.006 85);
-  --card: oklch(0.125 0.002 250);
+  --background: #0b0b0b;
+  --foreground: #f5f5f5;
+  --card: #252525;
   --card-foreground: oklch(0.96 0.006 85);
   --popover: oklch(0.11 0.002 250);
   --popover-foreground: oklch(0.96 0.006 85);
-  --primary: oklch(0.9 0.035 85);
-  --primary-foreground: oklch(0.11 0.002 250);
-  --secondary: oklch(0.18 0.002 250);
+  --primary: #c4ed89;
+  --primary-foreground: #0b0b0b;
+  --secondary: #252525;
   --secondary-foreground: oklch(0.96 0.006 85);
   --muted: oklch(0.17 0.002 250);
-  --muted-foreground: oklch(0.66 0.006 85);
-  --accent: oklch(0.82 0.05 82);
-  --accent-foreground: oklch(0.11 0.002 250);
+  --muted-foreground: oklch(0.72 0 0);
+  --accent: #c4ed89;
+  --accent-foreground: #0b0b0b;
   --destructive: oklch(0.62 0.2 25);
   --destructive-foreground: oklch(0.96 0.006 85);
-  --border: oklch(1 0 0 / 9%);
+  --border: #252525;
   --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.9 0.035 85);
+  --ring: #c4ed89;
   --chart-1: oklch(0.9 0.035 85);
   --chart-2: oklch(0.72 0.02 85);
   --chart-3: oklch(0.55 0.01 85);
@@ -98,8 +98,8 @@
   --sidebar-ring: oklch(0.9 0.035 85);
 
   /* Atmosphere tokens */
-  --bg-deep: #060606;
-  --bg-soft: #0d0d0d;
+  --bg-deep: #0b0b0b;
+  --bg-soft: #252525;
   --bone: oklch(0.9 0.035 85);
   --gradient-primary: linear-gradient(100deg, oklch(0.97 0.01 85), oklch(0.82 0.05 82));
   --gradient-radial: radial-gradient(ellipse 70% 50% at 50% 0%, oklch(1 0 0 / 0.08), transparent 70%);
@@ -117,7 +117,7 @@
   body {
     background-color: var(--bg-deep);
     color: var(--color-foreground);
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
     overscroll-behavior-y: none;
@@ -130,55 +130,45 @@
   }
 
   h1, h2, h3, h4 {
-    font-family: 'Inter Tight', 'Inter', system-ui, sans-serif;
-    letter-spacing: -0.035em;
+    font-family: 'Sora', system-ui, sans-serif;
+    letter-spacing: 0;
     font-weight: 500;
   }
 }
 
 @layer utilities {
-  /* Editorial serif italic accent — replaces the old neon gradient */
-  .serif {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-style: italic;
+  .serif, .text-gradient {
+    font-family: 'Sora', system-ui, sans-serif;
+    font-style: normal;
     font-weight: 400;
-    letter-spacing: -0.01em;
-  }
-  .text-gradient {
-    font-family: 'Instrument Serif', Georgia, serif;
-    font-style: italic;
-    font-weight: 400;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    color: var(--primary);
     display: inline-block;
-    padding-right: 0.06em;
   }
   .eyebrow {
     font-size: 10px;
     text-transform: uppercase;
-    letter-spacing: 0.35em;
+    letter-spacing: 0;
     color: var(--color-muted-foreground);
   }
   .hairline {
     height: 1px;
-    background: linear-gradient(to right, transparent, oklch(1 0 0 / 0.14), transparent);
+    background: var(--border);
   }
   .dotgrid {
-    background-image: radial-gradient(oklch(1 0 0 / 0.22) 1.5px, transparent 1.5px);
-    background-size: 34px 34px;
+    background-image: radial-gradient(var(--foreground) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.03;
   }
   .glass {
     position: relative;
     overflow: hidden;
-    background-color: oklch(0.11 0.002 250 / 0.88);
-    border: 1px solid oklch(1 0 0 / 0.08);
-    box-shadow: 0 14px 40px oklch(0 0 0 / 0.4);
+    background-color: var(--secondary);
+    border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
+    box-shadow: var(--shadow-elegant);
   }
   @supports ((backdrop-filter: blur(20px)) or (-webkit-backdrop-filter: blur(20px))) {
     .glass {
-      background-color: oklch(0.11 0.002 250 / 0.55);
+      background-color: color-mix(in srgb, var(--secondary) 90%, transparent);
       -webkit-backdrop-filter: blur(24px) saturate(120%);
       backdrop-filter: blur(24px) saturate(120%);
     }
@@ -248,4 +238,50 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* Editorial Mono layout: exact palette from the selected direction. */
+:root {
+  --hero-shade: linear-gradient(to bottom, color-mix(in srgb, var(--background) 85%, transparent), var(--background));
+  --font-heading: 'Sora', system-ui, sans-serif;
+}
+.site-container { width: 100%; max-width: 1408px; margin-inline: auto; padding-inline: 64px; }
+.site-header { background: color-mix(in srgb, var(--background) 92%, transparent); }
+.brand-name { font-family: var(--font-heading); font-weight: 700; }
+.hero-cover { min-height: min(900px, 90svh); display: flex; align-items: center; }
+.hero-cover > .site-container { min-height: min(900px, 90svh); }
+.hero-shade { background: var(--hero-shade); }
+.hero-title { font-size: 88px; font-weight: 800; line-height: 1.02; }
+.outline-type { color: transparent; -webkit-text-stroke: 1px var(--foreground); }
+.section-title { font-size: 56px; line-height: 1.12; }
+.contact-title { font-size: 80px; line-height: 1.12; }
+section[id] { scroll-margin-top: 100px; }
+.service-item { min-height: 270px; }
+.service-item h3 { font-weight: 600; }
+@media (min-width: 640px) and (max-width: 1023px) { .service-item:nth-child(odd) { border-right: 1px solid var(--border); } }
+@media (min-width: 1024px) {
+  .service-item:not(:nth-child(3n)) { border-right: 1px solid var(--border); }
+  .work-grid > div:nth-child(2n + 3) { margin-top: 64px; }
+}
+@media (min-width: 1440px) { .hero-title { font-size: 106px; } }
+@media (max-width: 1100px) and (min-width: 1024px) { .hero-title { font-size: 72px; } }
+@media (max-width: 1023px) {
+  .site-container { padding-inline: 32px; }
+  .hero-title { font-size: 80px; }
+  .hero-cover, .hero-cover > .site-container { min-height: auto; }
+}
+@media (max-width: 639px) {
+  .site-container { padding-inline: 24px; }
+  .hero-title { font-size: 42px; line-height: 1.1; }
+  .section-title { font-size: 34px; }
+  .contact-title { font-size: 42px; }
+  .contact-link { gap: 12px; }
+  .contact-link > span { gap: 10px; }
+  .contact-link > span > span { font-size: 14px; overflow-wrap: anywhere; }
+}
+/* Typography spacing remains stable in every viewport. */
+[class*="tracking-"] { letter-spacing: 0; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }

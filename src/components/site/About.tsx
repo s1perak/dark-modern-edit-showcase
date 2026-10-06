@@ -2,8 +2,8 @@ const software = ["Premiere Pro", "After Effects", "Photoshop"];
 
 export function About() {
   return (
-    <section id="about" className="relative px-6 py-28 sm:py-36">
-      <div className="mx-auto max-w-[84rem]">
+    <section id="about" className="relative py-20 sm:py-28">
+      <div className="site-container">
         <div className="grid gap-12 border-t border-border/60 pt-14 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <p className="eyebrow">(02) — About</p>
@@ -13,10 +13,10 @@ export function About() {
           </div>
 
           <div className="lg:col-span-8">
-            <h2 className="max-w-3xl text-4xl leading-[1.05] tracking-tight sm:text-6xl">
+            <h2 className="section-title max-w-3xl">
               About <span className="text-gradient">me</span>.
             </h2>
-            <p className="mt-8 max-w-2xl text-[15px] leading-relaxed text-muted-foreground">
+            <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-2xl">
               I'm Robert, a video editor based in Nuremberg, Germany. I work with
               influencers and content creators to elevate their content beyond
               basic editing. Through motion design, sound design, and precise
