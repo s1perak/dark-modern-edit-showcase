@@ -19,12 +19,10 @@ export function LoadingScreen() {
           alt="Robert Blazevic logo"
           className="mx-auto mb-7 h-14 w-14 rounded-full animate-pulse-glow"
         />
-        <p className="text-[10px] uppercase tracking-[0.5em] text-muted-foreground">
-          Loading reel
-        </p>
+        <p className="font-mono text-[10px] uppercase text-muted-foreground">Loading timeline // 00:00:01</p>
         <div className="mx-auto mt-4 h-px w-32 overflow-hidden bg-border">
           <div
-            className="h-full w-full origin-left bg-gradient-to-r from-transparent via-primary to-transparent"
+            className="h-full w-full origin-left bg-primary"
             style={{ animation: "shimmer 1.4s linear forwards", backgroundSize: "200% 100%" }}
           />
         </div>
