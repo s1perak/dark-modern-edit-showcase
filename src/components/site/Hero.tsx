@@ -1,32 +1,29 @@
-import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { projects, shortformProjects } from "@/data/portfolio";
-import { Button } from "@/components/ui/button";
 
 export function Hero() {
-  const frames = [projects[1], projects[2], projects[0], shortformProjects[0], projects[4]];
+  const frames = [projects[1], projects[2], shortformProjects[0], projects[4]];
   return (
-    <section id="top" className="hero-canvas relative overflow-hidden border-b border-border pt-16">
+    <section id="top" className="hero-canvas relative overflow-hidden border-b border-border">
+      <div className="hero-glow" aria-hidden="true" />
       <div className="hero-stage site-container relative">
-        <div className="hero-status font-mono">FRAME 0001 / PORTFOLIO</div>
         {frames.map((frame, index) => frame && (
-          <figure key={frame.id} className={`hero-frame hero-frame-${index + 1}`}>
+          <figure key={frame.id} className={`hero-frame hero-frame-${index + 1}`} aria-hidden="true">
             <img src={frame.thumbnail} alt="" className="h-full w-full object-cover" />
-            <figcaption className="font-mono">0{index + 1} — {frame.title}</figcaption>
           </figure>
         ))}
         <div className="hero-copy animate-fade-up">
-          <p className="mb-4 font-mono text-[10px] uppercase text-primary">Robert Blazevic / Video editor</p>
-          <h1 className="hero-title">Videos<br />Designed to <span>Perform</span></h1>
+          <p className="mb-6 text-[10px] font-bold uppercase text-primary opacity-80">Portfolio — Robert Blazevic</p>
+          <h1 className="hero-title">
+            Videos<br />
+            Designed to<br />
+            <span>Perform</span>
+          </h1>
+          <p className="hero-sub">I'm Robert — I help creators, brands and influencers turn content into cinematic stories.</p>
         </div>
-        <div className="hero-intro animate-fade-up">
-          <p>I'm Robert — I help creators, brands and influencers turn content into cinematic stories.</p>
-          <Button asChild variant="link" className="mt-5 h-auto rounded-none p-0 text-primary hover:no-underline">
-            <a href="#work">Enter the archive <ArrowUpRight /></a>
-          </Button>
+        <div className="hero-scroll" aria-hidden="true">
+          <div className="hero-scroll-line" />
+          <p className="text-[9px] font-bold uppercase text-muted-foreground">Scroll to explore</p>
         </div>
-        <Button asChild variant="outline" size="icon" className="hero-down rounded-md">
-          <a href="#work" aria-label="Scroll to work"><ArrowDown /></a>
-        </Button>
       </div>
     </section>
   );
