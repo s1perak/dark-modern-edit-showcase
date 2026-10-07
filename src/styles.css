@@ -280,7 +280,22 @@
 .hero-copy > p:first-child, .hero-scroll p { font-family: var(--font-label); font-weight: 400; }
 .hero-sub { margin: 28px auto 0; max-width: 420px; color: var(--muted-foreground); font-size: 14px; line-height: 1.7; }
 .hero-scroll { position: absolute; z-index: 12; left: 50%; bottom: 36px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 14px; }
-.hero-scroll-line { width: 1px; height: 56px; background: linear-gradient(to bottom, var(--primary), transparent); }
+.hero-scroll-line { position: relative; width: 1px; height: 56px; background: color-mix(in srgb, var(--muted-foreground) 25%, transparent); overflow: hidden; }
+.hero-scroll-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, var(--primary) 45%, var(--primary) 55%, transparent);
+  animation: scroll-sweep 2.2s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+@keyframes scroll-sweep {
+  0% { transform: translateY(-100%); }
+  70% { transform: translateY(100%); }
+  100% { transform: translateY(100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-line::after { animation: none; opacity: 0.6; }
+}
 .hero-frame { position: absolute; overflow: hidden; border: 1px solid var(--border); border-radius: 4px; background: var(--card); padding: 4px; box-shadow: var(--shadow-elegant); }
 .hero-frame img { filter: saturate(.85) brightness(.8); border-radius: 2px; }
 .hero-frame-1 { left: 6%; top: 16%; width: 22%; aspect-ratio: 16/9; transform: rotate(-4deg); opacity: .85; }
