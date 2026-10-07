@@ -310,7 +310,7 @@
 .hero-orb-2 { right: 11%; top: 28%; width: 200px; opacity: .62; animation-duration: 9s; animation-delay: -2s; }
 .hero-orb-3 { right: 31%; top: 8%; width: 122px; opacity: .5; animation-name: float-slow, orb-tilt; animation-duration: 13s; animation-delay: -7s; }
 .hero-orb-4 { left: 37%; bottom: 17%; width: 94px; opacity: .58; animation-duration: 8s; animation-delay: -3s; }
-.hero-orb-5 { left: 22%; top: 53%; width: 106px; opacity: .5; animation-name: float-slow, orb-tilt; animation-duration: 15s; animation-delay: -8s; }
+.hero-orb-5 { left: 17%; top: 56%; width: 106px; opacity: .5; animation-name: float-slow, orb-tilt; animation-duration: 15s; animation-delay: -8s; }
 
 /* Smaller screens: the floating objects thin out so the headline and subtext stay clear. */
 @media (max-width: 1023px) {
