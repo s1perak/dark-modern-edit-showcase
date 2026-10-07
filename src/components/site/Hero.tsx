@@ -1,10 +1,16 @@
 import { projects, shortformProjects } from "@/data/portfolio";
+import orbCream from "@/assets/orb-cream.png";
+import orbRing from "@/assets/orb-ring.png";
+import orbBlob from "@/assets/orb-blob.png";
 
 export function Hero() {
   const frames = [projects[1], projects[2], shortformProjects[0], projects[4]];
   return (
     <section id="top" className="hero-canvas relative overflow-hidden border-b border-border">
       <div className="hero-glow" aria-hidden="true" />
+      <img src={orbCream} alt="" aria-hidden="true" className="hero-orb hero-orb-1 animate-float-slow" width={816} height={816} />
+      <img src={orbRing} alt="" aria-hidden="true" className="hero-orb hero-orb-2 animate-float-slow" width={816} height={816} loading="lazy" />
+      <img src={orbBlob} alt="" aria-hidden="true" className="hero-orb hero-orb-3 animate-float-slow" width={816} height={816} loading="lazy" />
       <div className="hero-stage site-container relative">
         {frames.map((frame, index) => frame && (
           <figure key={frame.id} className={`hero-frame hero-frame-${index + 1}`} aria-hidden="true">

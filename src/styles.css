@@ -271,6 +271,10 @@
 .hero-frame-2 { right: 4%; top: 24%; width: 13%; aspect-ratio: 9/16; transform: rotate(6deg); opacity: .65; }
 .hero-frame-3 { left: 14%; bottom: 12%; width: 15%; aspect-ratio: 1/1; transform: rotate(-8deg); opacity: .45; }
 .hero-frame-4 { right: 10%; bottom: 16%; width: 18%; aspect-ratio: 16/9; transform: rotate(3deg); opacity: .7; }
+.hero-orb { position: absolute; z-index: 1; pointer-events: none; filter: drop-shadow(0 30px 60px rgb(0 0 0 / 0.55)); }
+.hero-orb-1 { left: -4%; bottom: 6%; width: 260px; opacity: .9; animation-duration: 7s; }
+.hero-orb-2 { right: 16%; top: 8%; width: 200px; opacity: .8; animation-duration: 9s; animation-delay: -3s; }
+.hero-orb-3 { left: 30%; top: 6%; width: 130px; opacity: .55; animation-duration: 8s; animation-delay: -5s; }
 
 .section-title { font-size: clamp(48px, 6vw, 92px); line-height: .88; font-weight: 800; }
 .contact-title { font-size: clamp(56px, 9vw, 136px); line-height: .84; font-weight: 800; }
