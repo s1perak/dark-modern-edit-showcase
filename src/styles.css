@@ -324,7 +324,7 @@
   .hero-orb-2 { right: 5%; top: 15%; width: 100px; opacity: .5; }
   .hero-orb-3 { right: 8%; top: auto; bottom: 15%; width: 92px; opacity: .45; }
   .hero-orb-4 { left: 13%; top: auto; bottom: 26%; width: 62px; opacity: .5; }
-  .hero-orb-5 { left: 29%; top: auto; bottom: 11%; width: 80px; opacity: .45; }
+  .hero-orb-5 { left: 20%; top: auto; bottom: 8%; width: 76px; opacity: .45; }
 }
 
 .section-title { font-size: clamp(48px, 6vw, 92px); line-height: .88; font-weight: 800; }
