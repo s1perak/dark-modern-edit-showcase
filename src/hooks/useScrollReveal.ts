@@ -40,7 +40,7 @@ export function useScrollReveal() {
           }
         }
       },
-      { threshold: 0.15, rootMargin: '0px 0px -10% 0px' }
+      { threshold: 0, rootMargin: '0px 0px -8% 0px' }
     );
 
     const attach = () => {

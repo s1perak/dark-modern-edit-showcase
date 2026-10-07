@@ -87,7 +87,7 @@ export function Work() {
           ];
           return (
             <>
-              <div className="work-masonry hidden md:grid">
+              <div className="work-masonry">
                 {columns.map((col, c) => (
                   <div key={c} className="work-masonry-col">
                     {col.map((p) => (
@@ -96,7 +96,7 @@ export function Work() {
                   </div>
                 ))}
               </div>
-              <div className="work-masonry-mobile md:hidden">
+              <div className="work-masonry-mobile">
                 {selectedCuts.map((p, i) => (
                   <ProjectCard key={p.id} project={p} index={i} onOpen={() => setActive(p)} />
                 ))}
