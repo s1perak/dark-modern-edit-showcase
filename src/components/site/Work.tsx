@@ -27,18 +27,14 @@ function ProjectCard({
           loading="lazy"
           className="h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.04] group-hover:brightness-110"
         />
-        <span className="absolute left-3 top-3 grid h-6 min-w-6 place-items-center rounded-sm bg-background/85 px-1 font-mono text-[9px] text-foreground">
-          {String(index + 1).padStart(2, "0")}
-        </span>
+        <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-70" />
       </Button>
 
-      <div className="mosaic-caption absolute inset-x-0 bottom-0 flex items-end justify-between gap-6 p-4">
-        <div>
-          <h3 className="text-[17px] font-semibold text-foreground">{project.title}</h3>
-          <p className="mt-1 font-mono text-[9px] uppercase text-primary">
-            {project.category}
-          </p>
-        </div>
+      <div className="mosaic-caption pointer-events-none absolute inset-x-0 bottom-0 p-6">
+        <span className="mb-2 block text-[9px] font-bold uppercase text-primary">
+          {String(index + 1).padStart(2, "0")} / {project.category}
+        </span>
+        <h3 className="text-2xl font-black uppercase text-foreground">{project.title}</h3>
       </div>
     </article>
   );
