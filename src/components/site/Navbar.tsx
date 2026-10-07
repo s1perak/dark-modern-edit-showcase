@@ -22,7 +22,8 @@ export function Navbar() {
 
 
   return (
-    <header className="site-header fixed left-0 right-0 top-0 z-50 mix-blend-difference">
+    <header className={`site-header fixed left-0 right-0 top-0 z-50 ${scrolled ? "is-scrolled" : "mix-blend-difference"}`}>
+
       <div className="site-container flex h-16 items-center justify-between gap-3">
         <Button asChild variant="link" className="h-auto gap-2.5 p-0 text-foreground hover:no-underline">
         <a href="#top" className="brand-name flex items-center text-sm">
@@ -33,7 +34,8 @@ export function Navbar() {
 
         <nav className="hidden items-center gap-10 md:flex" aria-label="Main navigation">
           {links.map((l) => (
-            <Button asChild variant="link" key={l.href} className="h-7 px-0 text-[9px] font-bold uppercase text-foreground/60 hover:text-foreground hover:no-underline">
+            <Button asChild variant="link" key={l.href} className={`h-7 px-0 text-[9px] font-bold uppercase hover:no-underline ${scrolled ? "text-foreground" : "text-foreground/60 hover:text-foreground"}`}>
+
             <a
               key={l.href}
               href={l.href}
