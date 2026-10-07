@@ -379,22 +379,9 @@ section[id] { scroll-margin-top: 100px; }
   letter-spacing: 0.2em; text-transform: uppercase;
   color: color-mix(in srgb, var(--primary) 30%, transparent);
 }
-.loading-meters {
-  position: absolute; right: 48px; bottom: 48px; display: flex;
-  align-items: flex-end; gap: 4px; height: 48px; opacity: 0.25; pointer-events: none;
-}
-.loading-meter {
-  width: 3px; background: var(--primary); transform-origin: bottom;
-  animation: loading-meter 1.1s ease-in-out infinite;
-}
-@keyframes loading-meter {
-  0%, 100% { transform: scaleY(0.35); }
-  50% { transform: scaleY(1); }
-}
 @media (max-width: 639px) {
   .loading-brackets { inset: 24px; }
   .loading-track { width: 200px; }
-  .loading-meters { right: 24px; bottom: 24px; }
 }
 /* Typography spacing remains stable in every viewport. */
 [class*="tracking-"] { letter-spacing: 0; }

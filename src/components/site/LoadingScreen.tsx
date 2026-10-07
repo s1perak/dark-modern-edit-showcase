@@ -51,22 +51,6 @@ export function LoadingScreen() {
         </div>
       </div>
 
-      {/* Audio level meters */}
-      <div aria-hidden="true" className="loading-meters">
-        {[
-          { height: "40%", delay: "0s" },
-          { height: "60%", delay: "0.2s" },
-          { height: "30%", delay: "0.35s" },
-          { height: "80%", delay: "0.1s" },
-          { height: "50%", delay: "0.45s" },
-        ].map((bar, i) => (
-          <span
-            key={i}
-            className="loading-meter"
-            style={{ height: bar.height, animationDelay: bar.delay }}
-          />
-        ))}
-      </div>
     </div>
   );
 }
