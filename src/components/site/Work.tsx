@@ -76,11 +76,34 @@ export function Work() {
           </p>
         </div>
 
-        <div className="work-mosaic">
-          {selectedCuts.map((p, i) => (
-            <ProjectCard key={p.id} project={p} index={i} onOpen={() => setActive(p)} />
-          ))}
-        </div>
+        {(() => {
+          const reels = selectedCuts.filter((p) => p.orientation === "portrait");
+          const wide = selectedCuts.filter((p) => p.orientation !== "portrait");
+          const idx = (p: Project) => selectedCuts.indexOf(p);
+          const columns: Project[][] = [
+            [...wide.slice(0, 2), ...(reels[1] ? [reels[1]] : [])],
+            wide.slice(2, 6),
+            [...(reels[0] ? [reels[0]] : []), ...wide.slice(6)],
+          ];
+          return (
+            <>
+              <div className="work-masonry hidden md:grid">
+                {columns.map((col, c) => (
+                  <div key={c} className="work-masonry-col">
+                    {col.map((p) => (
+                      <ProjectCard key={p.id} project={p} index={idx(p)} onOpen={() => setActive(p)} />
+                    ))}
+                  </div>
+                ))}
+              </div>
+              <div className="work-masonry-mobile md:hidden">
+                {selectedCuts.map((p, i) => (
+                  <ProjectCard key={p.id} project={p} index={i} onOpen={() => setActive(p)} />
+                ))}
+              </div>
+            </>
+          );
+        })()}
       </div>
 
       <VideoModal project={active} onClose={() => setActive(null)} />

@@ -312,19 +312,15 @@
 .section-title { font-size: clamp(48px, 6vw, 92px); line-height: .88; font-weight: 800; }
 .contact-title { font-size: clamp(56px, 9vw, 136px); line-height: .84; font-weight: 800; }
 
-/* Unified technical mosaic: landscape edits and vertical reels share one screening wall. */
-.work-mosaic {
-  display: grid;
-  grid-template-columns: repeat(10, minmax(0, 1fr));
-  grid-auto-rows: minmax(0, calc((100vw - 128px - 126px) / 10 * 0.5625));
-  grid-auto-flow: dense;
-  gap: 14px;
-}
-.mosaic-item { position: relative; min-width: 0; min-height: 0; overflow: hidden; }
+/* Cinematic masonry wall: three stacked columns, reels pinned top-right and bottom-left. */
+.work-masonry { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+.work-masonry-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.work-masonry-mobile { display: flex; flex-direction: column; gap: 12px; }
+.mosaic-item { position: relative; min-width: 0; overflow: hidden; }
 .mosaic-item .project-image { position: absolute; inset: 0; border-radius: 2px; }
-.mosaic-landscape { grid-column: span 4; grid-row: span 4; }
-.mosaic-portrait { grid-column: span 2; grid-row: span 6; }
-.mosaic-7, .mosaic-8, .mosaic-9, .mosaic-10 { grid-column: span 5; grid-row: span 5; }
+.mosaic-landscape { aspect-ratio: 16/9; }
+.mosaic-portrait { aspect-ratio: 9/14; }
+.work-masonry-col:nth-child(2) .mosaic-item { flex: 1 1 auto; aspect-ratio: auto; min-height: 0; }
 .project-shade { background: linear-gradient(to top, color-mix(in srgb, var(--background) 92%, transparent), transparent 58%); transition: opacity .5s ease; }
 .mosaic-item:hover .project-shade { opacity: .72; }
 .project-timecode, .project-play { opacity: 0; transform: translateY(-5px); transition: opacity .3s ease, transform .3s ease, background-color .3s ease, color .3s ease, border-color .3s ease; }
@@ -341,7 +337,6 @@ section[id] { scroll-margin-top: 100px; }
   .site-container { padding-inline: 32px; }
   .hero-frame-1 { left: 2%; width: 30%; }
   .hero-frame-4 { right: 4%; width: 26%; }
-  .work-mosaic { grid-auto-rows: minmax(0, calc((100vw - 64px - 126px) / 10 * 0.5625)); }
 }
 @media (max-width: 639px) {
   .site-container { padding-inline: 24px; }
@@ -352,9 +347,7 @@ section[id] { scroll-margin-top: 100px; }
   .hero-frame-2 { right: -4%; top: 18%; width: 30%; }
   .hero-frame-3 { display: none; }
   .hero-frame-4 { right: 2%; bottom: 14%; width: 44%; }
-  .work-mosaic { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: auto; grid-auto-flow: row; gap: 12px; }
-  .mosaic-landscape, .mosaic-7, .mosaic-8, .mosaic-9, .mosaic-10 { grid-column: span 2; grid-row: auto; aspect-ratio: 16/9; }
-  .mosaic-portrait { grid-column: span 1; grid-row: auto; aspect-ratio: 9/16; }
+  .mosaic-portrait { aspect-ratio: 9/16; }
   .mosaic-caption { padding: 12px; }
   .mosaic-caption h3 { font-size: 14px; }
   .project-timecode { display: none; }
