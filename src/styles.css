@@ -316,9 +316,11 @@
   .hero-orb-3, .hero-orb-4, .hero-orb-5 { display: none; }
 }
 @media (max-width: 639px) {
-  .hero-orb-1 { left: -10%; top: 14%; width: 130px; opacity: .45; }
-  .hero-orb-2 { right: -12%; bottom: 10%; width: 110px; opacity: .4; }
-  .hero-orb-3, .hero-orb-4, .hero-orb-5 { display: none; }
+  .hero-orb-1 { left: 6%; top: 9%; width: 110px; opacity: .5; }
+  .hero-orb-2 { right: 7%; top: 14%; width: 95px; opacity: .5; }
+  .hero-orb-3 { right: 10%; bottom: 14%; width: 100px; opacity: .45; }
+  .hero-orb-4 { left: 12%; bottom: 24%; width: 60px; opacity: .5; }
+  .hero-orb-5 { left: 40%; top: 5%; width: 70px; opacity: .4; }
 }
 
 .section-title { font-size: clamp(48px, 6vw, 92px); line-height: .88; font-weight: 800; }
