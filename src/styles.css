@@ -132,19 +132,20 @@
   h1, h2, h3, h4 {
     font-family: var(--font-heading);
     letter-spacing: 0;
-    font-weight: 500;
+    font-weight: 700;
   }
 }
 
 @layer utilities {
   .serif, .text-gradient {
     font-family: var(--font-heading);
-    font-style: normal;
-    font-weight: 500;
+    font-style: italic;
+    font-weight: 200;
     color: var(--primary);
     display: inline-block;
   }
   .eyebrow {
+    font-family: var(--font-label);
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 0;
@@ -242,8 +243,9 @@
 
 /* Timeline mosaic: real media forms the visual identity. */
 :root {
-  --font-heading: 'Outfit', system-ui, sans-serif;
-  --font-body: 'Figtree', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-label: 'JetBrains Mono', monospace;
 }
 .site-container { width: 100%; max-width: 1408px; margin-inline: auto; padding-inline: 64px; }
 .site-header { background: transparent; }
@@ -260,9 +262,10 @@
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   text-align: center;
 }
-.hero-title { font-size: clamp(56px, 9vw, 128px); font-weight: 700; line-height: .96; text-transform: uppercase; letter-spacing: 0; }
-.hero-title span { color: var(--primary); font-family: var(--font-heading); font-style: normal; font-weight: 500; text-transform: none; letter-spacing: 0; }
+.hero-title { font-size: clamp(56px, 9vw, 128px); font-weight: 900; line-height: .96; text-transform: uppercase; letter-spacing: 0; }
+.hero-title span { color: var(--primary); font-family: var(--font-heading); font-style: italic; font-weight: 200; text-transform: none; letter-spacing: 0; }
 .hero-copy { position: relative; z-index: 10; }
+.hero-copy > p:first-child, .hero-scroll p { font-family: var(--font-label); font-weight: 400; }
 .hero-sub { margin: 28px auto 0; max-width: 420px; color: var(--muted-foreground); font-size: 14px; line-height: 1.7; }
 .hero-scroll { position: absolute; z-index: 12; left: 50%; bottom: 36px; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 14px; }
 .hero-scroll-line { width: 1px; height: 56px; background: linear-gradient(to bottom, var(--primary), transparent); }
