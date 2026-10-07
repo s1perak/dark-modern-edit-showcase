@@ -313,9 +313,9 @@
 .contact-title { font-size: clamp(56px, 9vw, 136px); line-height: .84; font-weight: 800; }
 
 /* Cinematic masonry wall: three stacked columns, reels pinned top-right and bottom-left. */
-.work-masonry { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
+.work-masonry { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; align-items: stretch; }
 .work-masonry-col { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-.work-masonry-mobile { display: flex; flex-direction: column; gap: 12px; }
+.work-masonry-mobile { display: none; flex-direction: column; gap: 12px; }
 .mosaic-item { position: relative; min-width: 0; overflow: hidden; }
 .mosaic-item .project-image { position: absolute; inset: 0; border-radius: 2px; }
 .mosaic-landscape { aspect-ratio: 16/9; }
@@ -415,3 +415,5 @@ section[id] { scroll-margin-top: 100px; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
+
+@media (max-width: 767px) { .work-masonry { display: none; } .work-masonry-mobile { display: flex; } }
