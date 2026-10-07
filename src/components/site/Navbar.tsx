@@ -13,18 +13,18 @@ export function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="site-header fixed left-0 right-0 top-0 z-50 border-b border-border">
+    <header className="site-header fixed left-0 right-0 top-0 z-50 mix-blend-difference">
       <div className="site-container flex h-16 items-center justify-between gap-3">
         <Button asChild variant="link" className="h-auto gap-2.5 p-0 text-foreground hover:no-underline">
         <a href="#top" className="brand-name flex items-center text-sm">
-          <img src="/favicon.png" alt="Robert Blazevic logo" className="h-8 w-8 rounded-full" />
-          <span>Robert Blazevic</span>
+          <img src="/favicon.png" alt="Robert Blazevic logo" className="h-9 w-9 rounded-full" />
+          <span className="text-[10px] font-bold uppercase">Robert Blazevic</span>
         </a>
         </Button>
 
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-10 md:flex" aria-label="Main navigation">
           {links.map((l) => (
-            <Button asChild variant="link" key={l.href} className="h-7 px-0 font-mono text-[10px] uppercase text-muted-foreground hover:text-primary hover:no-underline">
+            <Button asChild variant="link" key={l.href} className="h-7 px-0 text-[9px] font-bold uppercase text-foreground/60 hover:text-foreground hover:no-underline">
             <a
               key={l.href}
               href={l.href}
@@ -35,7 +35,7 @@ export function Navbar() {
           ))}
         </nav>
 
-        <Button asChild variant="outline" className="hidden h-9 rounded-md px-4 font-mono text-[10px] uppercase md:inline-flex">
+        <Button asChild variant="outline" className="hidden h-9 rounded-md px-4 text-[9px] font-bold uppercase md:inline-flex">
         <a
           href="#contact"
           className="group"
@@ -58,7 +58,7 @@ export function Navbar() {
       </div>
 
       {open && (
-        <div className="absolute left-6 right-6 top-full mt-2 glass rounded-lg p-6 md:hidden animate-fade-up">
+        <div className="absolute left-6 right-6 top-full mt-2 glass rounded-lg p-6 mix-blend-normal md:hidden animate-fade-up">
           <nav className="flex flex-col gap-4">
             {links.map((l) => (
               <Button asChild variant="link" key={l.href} className="justify-start px-0 text-lg text-foreground">
