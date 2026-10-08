@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 
 export function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden py-20 sm:py-28">
+    <section id="contact" className="relative overflow-hidden pt-8 pb-20 sm:pt-10 sm:pb-28">
       <div className="site-container">
-        <div className="border-t border-border/60 pt-14">
+        <div className="border-t border-border/60 pt-10">
            <p className="eyebrow mb-8">NEW PROJECT // 04</p>
            <h2 className="contact-title max-w-5xl uppercase">
             Let's Make It{" "}
