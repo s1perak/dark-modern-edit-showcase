@@ -29,6 +29,7 @@ export function HeroRoom() {
 
     const materials: THREE.Material[] = [];
     const geometries: THREE.BufferGeometry[] = [];
+    const textures: THREE.Texture[] = [];
     const wall = new THREE.MeshStandardMaterial({
       color: color("--room-wall"), roughness: 0.87, metalness: 0.18, side: THREE.BackSide,
     });
@@ -38,6 +39,84 @@ export function HeroRoom() {
     const room = new THREE.Mesh(roomGeometry, wall);
     room.position.z = -8;
     scene.add(room);
+
+    // Procedural dark plank flooring — charcoal wood with grain and seams,
+    // plus a roughness map so the warm strips catch a subtle sheen.
+    const createFloorMaps = () => {
+      const size = 512;
+      const canvas = document.createElement("canvas");
+      canvas.width = canvas.height = size;
+      const ctx = canvas.getContext("2d")!;
+      const rough = document.createElement("canvas");
+      rough.width = rough.height = size;
+      const rctx = rough.getContext("2d")!;
+      const rows = 6;
+      const plankH = size / rows;
+      ctx.fillStyle = "#232120";
+      ctx.fillRect(0, 0, size, size);
+      rctx.fillStyle = "#8a8a8a";
+      rctx.fillRect(0, 0, size, size);
+      for (let row = 0; row < rows; row++) {
+        const y = row * plankH;
+        const tone = 30 + Math.random() * 12;
+        ctx.fillStyle = `rgb(${tone}, ${tone - 1}, ${tone - 3})`;
+        ctx.fillRect(0, y, size, plankH);
+        // Grain streaks
+        for (let g = 0; g < 46; g++) {
+          const gy = y + Math.random() * plankH;
+          const light = Math.random() > 0.6;
+          ctx.strokeStyle = light ? "rgba(78, 72, 64, 0.16)" : "rgba(12, 11, 10, 0.22)";
+          ctx.lineWidth = 0.6 + Math.random() * 1.4;
+          ctx.beginPath();
+          ctx.moveTo(0, gy);
+          for (let x = 0; x <= size; x += 32) {
+            ctx.lineTo(x, gy + Math.sin(x * 0.02 + row) * 2.2);
+          }
+          ctx.stroke();
+          rctx.strokeStyle = light ? "rgba(180, 180, 180, 0.25)" : "rgba(70, 70, 70, 0.3)";
+          rctx.lineWidth = 1 + Math.random() * 2;
+          rctx.beginPath();
+          rctx.moveTo(0, gy);
+          rctx.lineTo(size, gy);
+          rctx.stroke();
+        }
+        // Horizontal seam between planks
+        ctx.fillStyle = "rgba(8, 8, 8, 0.85)";
+        ctx.fillRect(0, y, size, 2);
+        rctx.fillStyle = "#b4b4b4";
+        rctx.fillRect(0, y, size, 2);
+        // Staggered vertical seams
+        const offset = (row % 2) * (size / 4) + Math.random() * 40;
+        for (let x = offset; x < size; x += size / 2) {
+          ctx.fillStyle = "rgba(8, 8, 8, 0.7)";
+          ctx.fillRect(x, y, 1.6, plankH);
+          rctx.fillStyle = "#a0a0a0";
+          rctx.fillRect(x, y, 2, plankH);
+        }
+      }
+      const map = new THREE.CanvasTexture(canvas);
+      map.colorSpace = THREE.SRGBColorSpace;
+      map.wrapS = map.wrapT = THREE.RepeatWrapping;
+      map.repeat.set(3, 4);
+      map.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+      const roughnessMap = new THREE.CanvasTexture(rough);
+      roughnessMap.colorSpace = THREE.NoColorSpace;
+      roughnessMap.wrapS = roughnessMap.wrapT = THREE.RepeatWrapping;
+      roughnessMap.repeat.set(3, 4);
+      textures.push(map, roughnessMap);
+      return { map, roughnessMap };
+    };
+    const { map: floorMap, roughnessMap: floorRough } = createFloorMaps();
+    const floorMaterial = new THREE.MeshStandardMaterial({
+      map: floorMap, roughnessMap: floorRough, roughness: 0.72, metalness: 0.22,
+    });
+    materials.push(floorMaterial);
+    const floorGeometry = new THREE.PlaneGeometry(24, 30);
+    geometries.push(floorGeometry);
+    const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.set(0, -6.47, -8);
+    scene.add(floor);
 
     // Recessed architectural frames establish depth around the floating headline.
     const frameMaterial = new THREE.MeshStandardMaterial({
@@ -124,6 +203,7 @@ export function HeroRoom() {
       window.removeEventListener("pointermove", onPointer);
       geometries.forEach((geometry) => geometry.dispose());
       materials.forEach((material) => material.dispose());
+      textures.forEach((texture) => texture.dispose());
       renderer.dispose();
       renderer.domElement.remove();
     };
