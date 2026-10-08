@@ -1,5 +1,8 @@
 # Roadmap
 
+- [ ] Tighten Services-to-Contact spacing further.
+- [ ] Test a moving 3D dark room behind the unchanged hero and verify its rendering.
+
 - [x] Group editing formats separately from finishing services and tighten spacing through Contact.
 
 - [x] Give the user bolder, distinct hero background options (gradients, lights, motion, texture)
