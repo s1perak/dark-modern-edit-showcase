@@ -263,57 +263,49 @@
 
 .brand-name { font-family: var(--font-heading); font-weight: 700; }
 
-/* Immersive dark showroom hero: vertical cream light blades on black, like a curtain of light. */
+/* Immersive dark showroom hero: soft beige light leak blooming over black. */
 .hero-canvas { min-height: 100svh; }
-/* Layered blurred vertical light streaks drifting slowly at different speeds. */
-.hero-blade {
-  position: absolute; inset: -6% -12%; z-index: 1; pointer-events: none;
-  background-repeat: repeat-x;
+/* Large blurred warm glows drifting slowly, like light leaking into a dark room. */
+.hero-leak {
+  position: absolute; z-index: 1; pointer-events: none;
+  border-radius: 50%;
   mix-blend-mode: screen;
-  filter: blur(7px);
-  will-change: background-position, opacity;
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 62%, transparent 94%);
-  mask-image: linear-gradient(to bottom, black 0%, black 62%, transparent 94%);
+  will-change: transform, opacity;
 }
-.hero-blade-1 {
-  background-image:
-    linear-gradient(90deg, transparent 0%, hsl(41 32% 86% / 0.30) 8%, hsl(41 32% 86% / 0.55) 12%, hsl(41 32% 86% / 0.30) 16%, transparent 24%),
-    linear-gradient(90deg, transparent 0%, hsl(38 30% 80% / 0.18) 10%, hsl(38 30% 80% / 0.34) 14%, hsl(38 30% 80% / 0.18) 18%, transparent 28%);
-  background-size: 460px 100%, 760px 100%;
-  filter: blur(9px);
-  animation: blade-drift-1 38s ease-in-out infinite alternate;
+.hero-leak-1 {
+  width: 90vmax; height: 90vmax;
+  left: -30vmax; top: -25vmax;
+  background: radial-gradient(circle, hsl(41 36% 84% / 0.34) 0%, hsl(41 34% 78% / 0.18) 34%, transparent 62%);
+  filter: blur(60px);
+  animation: leak-breathe-1 18s ease-in-out infinite alternate;
 }
-.hero-blade-2 {
-  background-image:
-    linear-gradient(90deg, transparent 0%, hsl(41 32% 86% / 0.22) 6%, hsl(41 32% 86% / 0.42) 9%, hsl(41 32% 86% / 0.22) 12%, transparent 18%),
-    linear-gradient(90deg, transparent 0%, hsl(35 28% 76% / 0.14) 12%, hsl(35 28% 76% / 0.26) 15%, hsl(35 28% 76% / 0.14) 18%, transparent 26%);
-  background-size: 340px 100%, 560px 100%;
-  filter: blur(5px);
-  animation: blade-drift-2 52s ease-in-out infinite alternate;
+.hero-leak-2 {
+  width: 70vmax; height: 70vmax;
+  right: -28vmax; bottom: -30vmax;
+  background: radial-gradient(circle, hsl(38 32% 78% / 0.20) 0%, hsl(38 30% 72% / 0.10) 38%, transparent 64%);
+  filter: blur(70px);
+  animation: leak-breathe-2 24s ease-in-out infinite alternate;
 }
-.hero-blade-3 {
-  background-image:
-    linear-gradient(90deg, transparent 0%, hsl(43 34% 90% / 0.12) 7%, hsl(43 34% 90% / 0.22) 10%, hsl(43 34% 90% / 0.12) 13%, transparent 20%);
-  background-size: 240px 100%;
-  filter: blur(3px);
-  animation: blade-drift-3 30s ease-in-out infinite alternate;
+.hero-leak-3 {
+  width: 46vmax; height: 46vmax;
+  left: 6%; top: 30%;
+  background: radial-gradient(circle, hsl(43 38% 90% / 0.14) 0%, transparent 58%);
+  filter: blur(50px);
+  animation: leak-breathe-3 14s ease-in-out infinite alternate;
 }
-@keyframes blade-drift-1 {
-  from { background-position: 0 0, 120px 0; opacity: 0.85; }
-  50%  { opacity: 1; }
-  to   { background-position: 340px 0, -180px 0; opacity: 0.75; }
+@keyframes leak-breathe-1 {
+  from { transform: translate3d(0, 0, 0) scale(1); opacity: 0.9; }
+  to   { transform: translate3d(6%, 5%, 0) scale(1.12); opacity: 1; }
 }
-@keyframes blade-drift-2 {
-  from { background-position: 0 0, -80px 0; opacity: 0.7; }
-  50%  { opacity: 0.95; }
-  to   { background-position: -260px 0, 200px 0; opacity: 0.6; }
+@keyframes leak-breathe-2 {
+  from { transform: translate3d(0, 0, 0) scale(1.08); opacity: 0.7; }
+  to   { transform: translate3d(-5%, -6%, 0) scale(0.96); opacity: 1; }
 }
-@keyframes blade-drift-3 {
-  from { background-position: 0 0; opacity: 0.9; }
-  50%  { opacity: 0.6; }
-  to   { background-position: 180px 0; opacity: 0.9; }
+@keyframes leak-breathe-3 {
+  from { transform: translate3d(0, 0, 0) scale(1); opacity: 0.6; }
+  to   { transform: translate3d(8%, -4%, 0) scale(1.15); opacity: 1; }
 }
-/* The blades dissolve into pure black toward the bottom of the hero. */
+/* The glow dissolves into pure black toward the bottom of the hero. */
 .hero-fade {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
   background: linear-gradient(to bottom, transparent 30%, color-mix(in srgb, var(--background) 82%, transparent) 72%, var(--background) 100%);
@@ -327,7 +319,7 @@
   background-size: 220px 220px;
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-blade { animation: none; }
+  .hero-leak { animation: none; }
 }
 .hero-stage {
   height: 100svh; min-height: 720px;
