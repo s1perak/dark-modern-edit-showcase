@@ -263,63 +263,56 @@
 
 .brand-name { font-family: var(--font-heading); font-weight: 700; }
 
-/* Immersive dark showroom hero: pulsing cream auroras, a slow light sweep, and film grain. */
+/* Immersive dark showroom hero: cream light waves rolling over a fade to black. */
 .hero-canvas { min-height: 100svh; }
+/* Warm cream glow at the top, melting down into deep black. */
 .hero-glow {
   position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--card) 55%, transparent) 0%, transparent 65%);
+  background:
+    radial-gradient(130% 85% at 50% -12%, color-mix(in srgb, var(--primary) 26%, transparent) 0%, transparent 58%),
+    linear-gradient(to bottom, #16140f 0%, var(--background) 78%);
 }
-/* Pulsing cream aurora glows behind the headline. */
-.hero-aurora {
-  position: absolute; z-index: 1; pointer-events: none;
-  border-radius: 50%; will-change: transform, opacity;
+/* Layered sine light waves drifting slowly at different speeds. */
+.hero-wave {
+  position: absolute; left: 0; right: 0; z-index: 1; pointer-events: none;
+  height: 260px;
+  background-repeat: repeat-x;
+  background-size: 1200px 100%;
   mix-blend-mode: screen;
+  will-change: background-position;
 }
-.hero-aurora-1 {
-  width: 85vmax; height: 85vmax;
-  left: -18%; top: -28%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 55%, transparent) 0%, transparent 60%);
-  filter: blur(130px);
-  animation: aurora-pulse-1 14s ease-in-out infinite alternate;
+.hero-wave-1 {
+  top: 10%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 260' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 130 Q 150 40 300 130 T 600 130 T 900 130 T 1200 130' fill='none' stroke='%23e8dfce' stroke-width='16' stroke-opacity='0.12' stroke-linecap='round'/%3E%3Cpath d='M0 130 Q 150 40 300 130 T 600 130 T 900 130 T 1200 130' fill='none' stroke='%23e8dfce' stroke-width='2' stroke-opacity='0.65'/%3E%3C/svg%3E");
+  opacity: 0.7;
+  animation: wave-drift-left 30s linear infinite;
 }
-.hero-aurora-2 {
-  width: 65vmax; height: 65vmax;
-  right: -14%; bottom: -30%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 36%, transparent) 0%, transparent 58%);
-  filter: blur(110px);
-  animation: aurora-pulse-2 18s ease-in-out infinite alternate-reverse;
+.hero-wave-2 {
+  top: 38%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 260' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 130 Q 100 75 200 130 T 400 130 T 600 130 T 800 130 T 1000 130 T 1200 130' fill='none' stroke='%23e8dfce' stroke-width='14' stroke-opacity='0.08' stroke-linecap='round'/%3E%3Cpath d='M0 130 Q 100 75 200 130 T 400 130 T 600 130 T 800 130 T 1000 130 T 1200 130' fill='none' stroke='%23e8dfce' stroke-width='1.5' stroke-opacity='0.4'/%3E%3C/svg%3E");
+  opacity: 0.55;
+  animation: wave-drift-right 42s linear infinite;
 }
-@keyframes aurora-pulse-1 {
-  0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.55; }
-  50% { transform: translate3d(6vw, 5vh, 0) scale(1.12); opacity: 0.9; }
-  100% { transform: translate3d(-4vw, 9vh, 0) scale(0.94); opacity: 0.6; }
+.hero-wave-3 {
+  top: 62%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1200 260' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 130 Q 300 20 600 130 T 1200 130' fill='none' stroke='%23e8dfce' stroke-width='18' stroke-opacity='0.14' stroke-linecap='round'/%3E%3Cpath d='M0 130 Q 300 20 600 130 T 1200 130' fill='none' stroke='%23e8dfce' stroke-width='2.5' stroke-opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.6;
+  animation: wave-drift-left 24s linear infinite;
 }
-@keyframes aurora-pulse-2 {
-  0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.5; }
-  50% { transform: translate3d(-6vw, -6vh, 0) scale(1.1); opacity: 0.85; }
-  100% { transform: translate3d(4vw, -10vh, 0) scale(0.92); opacity: 0.55; }
+@keyframes wave-drift-left {
+  from { background-position-x: 0; }
+  to { background-position-x: 1200px; }
 }
-/* Slow vertical light beam sweeping through the frame. */
-.hero-sweep {
-  position: absolute; z-index: 2; pointer-events: none;
-  left: 0; right: 0; top: -75%; height: 150%;
-  background: linear-gradient(
-    to bottom,
-    transparent 38%,
-    color-mix(in srgb, var(--primary) 26%, transparent) 50%,
-    transparent 62%
-  );
-  filter: blur(28px);
-  mix-blend-mode: screen;
-  opacity: 0.5;
-  animation: hero-sweep 9s linear infinite;
-  will-change: transform;
+@keyframes wave-drift-right {
+  from { background-position-x: 0; }
+  to { background-position-x: -1200px; }
 }
-@keyframes hero-sweep {
-  0% { transform: translate3d(0, -22%, 0); }
-  100% { transform: translate3d(0, 22%, 0); }
+/* The waves dissolve into pure black toward the bottom of the hero. */
+.hero-fade {
+  position: absolute; inset: 0; z-index: 2; pointer-events: none;
+  background: linear-gradient(to bottom, transparent 30%, color-mix(in srgb, var(--background) 82%, transparent) 72%, var(--background) 100%);
 }
-/* Film grain over the light so the glow feels textured, not flat. */
+/* Film grain so the light feels textured, not flat. */
 .hero-grain {
   position: absolute; z-index: 3; inset: 0; pointer-events: none;
   opacity: 0.09;
@@ -327,13 +320,8 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 220px 220px;
 }
-/* Deep vignette to keep the edges cinematic and text readable. */
-.hero-vignette {
-  position: absolute; z-index: 4; inset: 0; pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 42%, color-mix(in srgb, var(--background) 88%, transparent) 100%);
-}
 @media (prefers-reduced-motion: reduce) {
-  .hero-aurora, .hero-sweep { animation: none; }
+  .hero-wave { animation: none; }
 }
 .hero-stage {
   height: 100svh; min-height: 720px;
