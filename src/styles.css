@@ -399,7 +399,7 @@
 .mosaic-item:hover .project-timecode, .mosaic-item:hover .project-play, .mosaic-item:focus-within .project-timecode, .mosaic-item:focus-within .project-play { opacity: 1; transform: translateY(0); }
 .mosaic-caption { text-shadow: 0 2px 12px rgb(0 0 0 / 0.6); }
 section[id] { scroll-margin-top: 100px; }
-.service-item { min-height: 270px; }
+.service-item { min-height: 220px; }
 .service-item h3 { font-weight: 600; }
 @media (min-width: 640px) and (max-width: 1023px) { .service-item:nth-child(odd) { border-right: 1px solid var(--border); } }
 @media (min-width: 1024px) {

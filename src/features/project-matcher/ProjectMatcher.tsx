@@ -40,8 +40,9 @@ export function ProjectMatcher() {
   const matches = result ? all.filter((p) => result.projectIds.includes(p.id)) : [];
 
   return (
-    <section id="match" className="relative px-6 py-24 md:px-10">
-      <div className="mx-auto max-w-5xl border-t border-border/60 pt-14 reveal">
+    <section id="match" className="relative py-8 sm:py-10">
+      <div className="site-container">
+      <div className="border-t border-border/60 pt-10 reveal">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">AI project match</p>
         <h2 className="section-title mt-4 uppercase">Tell me about your video</h2>
         <p className="mt-4 max-w-xl text-muted-foreground">
@@ -93,6 +94,7 @@ export function ProjectMatcher() {
             )}
           </div>
         )}
+      </div>
       </div>
       <VideoModal project={active} onClose={() => setActive(null)} />
     </section>
