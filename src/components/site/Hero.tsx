@@ -1,9 +1,9 @@
 export function Hero() {
   return (
     <section id="top" className="hero-canvas relative overflow-hidden border-b border-border">
-      <div className="hero-blade hero-blade-1" aria-hidden="true" />
-      <div className="hero-blade hero-blade-2" aria-hidden="true" />
-      <div className="hero-blade hero-blade-3" aria-hidden="true" />
+      <div className="hero-leak hero-leak-1" aria-hidden="true" />
+      <div className="hero-leak hero-leak-2" aria-hidden="true" />
+      <div className="hero-leak hero-leak-3" aria-hidden="true" />
       <div className="hero-fade" aria-hidden="true" />
       <div className="hero-grain" aria-hidden="true" />
       <div className="hero-stage site-container relative">
