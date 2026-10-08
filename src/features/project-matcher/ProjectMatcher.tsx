@@ -40,9 +40,9 @@ export function ProjectMatcher() {
   const matches = result ? all.filter((p) => result.projectIds.includes(p.id)) : [];
 
   return (
-    <section id="match" className="relative py-8 sm:py-10">
+    <section id="match" className="relative py-3 sm:py-4">
       <div className="site-container">
-      <div className="border-t border-border/60 pt-10 reveal">
+      <div className="border-t border-border/60 pt-6 reveal">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">AI project match</p>
         <h2 className="section-title mt-4 uppercase">Tell me about your video</h2>
         <p className="mt-4 max-w-xl text-muted-foreground">
