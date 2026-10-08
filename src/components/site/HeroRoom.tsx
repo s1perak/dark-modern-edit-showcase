@@ -151,6 +151,117 @@ export function HeroRoom() {
     };
     strip(-11.65, -4);
     strip(11.65, -12);
+
+    // Video studio set dressing — softboxes on stands, a camera on a tripod,
+    // and a seamless backdrop sweep, all kept as dark silhouettes with warm glows.
+    const gearMaterial = new THREE.MeshStandardMaterial({
+      color: 0x141312, roughness: 0.55, metalness: 0.6,
+    });
+    const softboxFace = new THREE.MeshBasicMaterial({ color: color("--room-light") });
+    const softboxShell = new THREE.MeshStandardMaterial({
+      color: 0x0d0c0b, roughness: 0.8, metalness: 0.3,
+    });
+    materials.push(gearMaterial, softboxFace, softboxShell);
+
+    const softbox = (x: number, z: number, yaw: number, tilt: number, height: number) => {
+      const group = new THREE.Group();
+      // Stand: pole + three splayed legs
+      const poleGeo = new THREE.CylinderGeometry(0.035, 0.035, height, 8);
+      geometries.push(poleGeo);
+      const pole = new THREE.Mesh(poleGeo, gearMaterial);
+      pole.position.y = -6.4 + height / 2;
+      group.add(pole);
+      for (let leg = 0; leg < 3; leg++) {
+        const legGeo = new THREE.CylinderGeometry(0.022, 0.022, 1.1, 6);
+        geometries.push(legGeo);
+        const mesh = new THREE.Mesh(legGeo, gearMaterial);
+        const angle = (leg / 3) * Math.PI * 2;
+        mesh.position.set(Math.cos(angle) * 0.42, -6.05, Math.sin(angle) * 0.42);
+        mesh.rotation.z = Math.cos(angle) * 0.5;
+        mesh.rotation.x = -Math.sin(angle) * 0.5;
+        group.add(mesh);
+      }
+      // Softbox head: dark shell + glowing diffuser face
+      const head = new THREE.Group();
+      const shellGeo = new THREE.BoxGeometry(1.7, 1.25, 0.55);
+      geometries.push(shellGeo);
+      const shell = new THREE.Mesh(shellGeo, softboxShell);
+      head.add(shell);
+      const faceGeo = new THREE.PlaneGeometry(1.5, 1.05);
+      geometries.push(faceGeo);
+      const face = new THREE.Mesh(faceGeo, softboxFace);
+      face.position.z = 0.29;
+      head.add(face);
+      head.position.y = -6.4 + height;
+      head.rotation.set(tilt, yaw, 0);
+      group.add(head);
+      group.position.set(x, 0, z);
+      scene.add(group);
+      // Glow cast from the diffuser
+      const glow = new THREE.PointLight(color("--room-light"), 30, 14, 2);
+      glow.position.set(x + Math.sin(yaw) * 1.2, -6.4 + height - 0.4, z + Math.cos(yaw) * 1.2);
+      scene.add(glow);
+    };
+    softbox(-8.2, -9, 0.7, 0.28, 5.6);
+    softbox(8.6, -14.5, -0.8, 0.22, 6.4);
+
+    // Cinema camera on tripod, silhouetted mid-room to the side.
+    const rig = new THREE.Group();
+    const bodyGeo = new THREE.BoxGeometry(1.15, 0.62, 0.62);
+    const lensGeo = new THREE.CylinderGeometry(0.2, 0.24, 0.72, 16);
+    const handleGeo = new THREE.BoxGeometry(0.5, 0.1, 0.1);
+    geometries.push(bodyGeo, lensGeo, handleGeo);
+    const body = new THREE.Mesh(bodyGeo, gearMaterial);
+    rig.add(body);
+    const lens = new THREE.Mesh(lensGeo, gearMaterial);
+    lens.rotation.x = Math.PI / 2;
+    lens.position.set(0.2, 0, -0.62);
+    rig.add(lens);
+    const handle = new THREE.Mesh(handleGeo, gearMaterial);
+    handle.position.y = 0.4;
+    rig.add(handle);
+    // Tiny red tally light — the one accent that says "recording".
+    const tallyGeo = new THREE.SphereGeometry(0.045, 8, 8);
+    const tallyMat = new THREE.MeshBasicMaterial({ color: 0xff3b30 });
+    geometries.push(tallyGeo);
+    materials.push(tallyMat);
+    const tally = new THREE.Mesh(tallyGeo, tallyMat);
+    tally.position.set(-0.3, 0.36, -0.2);
+    rig.add(tally);
+    rig.position.set(-4.6, -3.4, -11.5);
+    rig.rotation.y = 0.5;
+    scene.add(rig);
+    for (let leg = 0; leg < 3; leg++) {
+      const legGeo = new THREE.CylinderGeometry(0.03, 0.03, 3.2, 6);
+      geometries.push(legGeo);
+      const mesh = new THREE.Mesh(legGeo, gearMaterial);
+      const angle = (leg / 3) * Math.PI * 2 + 0.4;
+      mesh.position.set(-4.6 + Math.cos(angle) * 0.6, -4.95, -11.5 + Math.sin(angle) * 0.6);
+      mesh.rotation.z = Math.cos(angle) * 0.38;
+      mesh.rotation.x = -Math.sin(angle) * 0.38;
+      scene.add(mesh);
+    }
+
+    // Seamless backdrop sweep against the far wall — a curved plane that
+    // rolls from wall to floor like studio paper.
+    const sweepGeo = new THREE.PlaneGeometry(12, 14, 24, 24);
+    geometries.push(sweepGeo);
+    const positions = sweepGeo.attributes.position;
+    for (let i = 0; i < positions.count; i++) {
+      const y = positions.getY(i);
+      // Bend the lower third forward into a floor sweep.
+      const t = THREE.MathUtils.clamp((-y - 2) / 5, 0, 1);
+      positions.setZ(i, Math.sin(t * Math.PI * 0.5) * 3.2);
+      positions.setY(i, y - (1 - Math.cos(t * Math.PI * 0.5)) * 2.4);
+    }
+    sweepGeo.computeVertexNormals();
+    const sweepMat = new THREE.MeshStandardMaterial({
+      color: 0x1a1918, roughness: 0.92, metalness: 0.05, side: THREE.DoubleSide,
+    });
+    materials.push(sweepMat);
+    const sweep = new THREE.Mesh(sweepGeo, sweepMat);
+    sweep.position.set(0.5, 0.4, -21.5);
+    scene.add(sweep);
     scene.add(new THREE.AmbientLight(color("--room-light"), 0.3));
     const ceiling = new THREE.PointLight(color("--room-light"), 75, 28, 2);
     ceiling.position.set(-4, 5.5, -7);
