@@ -4,6 +4,7 @@ export function Hero() {
       <div className="hero-leak hero-leak-1" aria-hidden="true" />
       <div className="hero-leak hero-leak-2" aria-hidden="true" />
       <div className="hero-leak hero-leak-3" aria-hidden="true" />
+      <div className="hero-fade" aria-hidden="true" />
       <div className="hero-grain" aria-hidden="true" />
       <div className="hero-stage site-container relative">
         <div className="hero-copy animate-fade-up">
