@@ -7,6 +7,8 @@ import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 import { LoadingScreen } from "@/components/site/LoadingScreen";
 import { Toaster } from "@/components/ui/sonner";
+// Removable AI feature: delete this import + <ProjectMatcher /> below to remove.
+import { ProjectMatcher } from "@/features/project-matcher/ProjectMatcher";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 export default function App() {
@@ -20,6 +22,7 @@ export default function App() {
         <Work />
         <About />
         <Services />
+        <ProjectMatcher />
         <Contact />
         <Footer />
         <Toaster />
