@@ -203,6 +203,7 @@ export function HeroRoom() {
       window.removeEventListener("pointermove", onPointer);
       geometries.forEach((geometry) => geometry.dispose());
       materials.forEach((material) => material.dispose());
+      textures.forEach((texture) => texture.dispose());
       renderer.dispose();
       renderer.domElement.remove();
     };
