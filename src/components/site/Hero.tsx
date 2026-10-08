@@ -4,6 +4,9 @@ export function Hero() {
       <div className="hero-glow" aria-hidden="true" />
       <div className="hero-aurora hero-aurora-1" aria-hidden="true" />
       <div className="hero-aurora hero-aurora-2" aria-hidden="true" />
+      <div className="hero-sweep" aria-hidden="true" />
+      <div className="hero-grain" aria-hidden="true" />
+      <div className="hero-vignette" aria-hidden="true" />
       <div className="hero-stage site-container relative">
         <div className="hero-copy animate-fade-up">
           <p className="mb-6 text-[10px] font-bold uppercase text-primary opacity-80">Portfolio — Robert Blazevic</p>
