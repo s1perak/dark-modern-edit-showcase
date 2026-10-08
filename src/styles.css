@@ -277,12 +277,12 @@
 }
 .hero-aurora-1 {
   left: -12%; top: -18%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 26%, transparent) 0%, transparent 62%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 38%, transparent) 0%, transparent 62%);
   animation: aurora-drift-1 26s ease-in-out infinite alternate;
 }
 .hero-aurora-2 {
   right: -16%; bottom: -24%;
-  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 16%, transparent) 0%, transparent 60%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 24%, transparent) 0%, transparent 60%);
   animation: aurora-drift-2 32s ease-in-out infinite alternate;
 }
 @keyframes aurora-drift-1 {
