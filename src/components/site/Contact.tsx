@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 
 export function Contact() {
   return (
-    <section id="contact" className="relative overflow-hidden pt-3 pb-20 sm:pt-4 sm:pb-28">
+    <section id="contact" className="relative overflow-hidden pt-2 pb-20 sm:pt-3 sm:pb-28">
       <div className="site-container">
-        <div className="border-t border-border/60 pt-6">
+        <div className="border-t border-border/60 pt-5">
            <p className="eyebrow mb-8">NEW PROJECT // 04</p>
            <h2 className="contact-title max-w-5xl uppercase">
             Let's Make It{" "}
