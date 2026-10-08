@@ -228,17 +228,33 @@
 /* Scroll-triggered reveal */
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  transform: translate3d(0, 24px, 0);
+  transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 1.05s cubic-bezier(0.22, 1, 0.36, 1),
+              clip-path 1.1s cubic-bezier(0.22, 1, 0.36, 1),
+              background-color 0.5s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal[data-reveal-kind="heading"] {
+  transform: translate3d(0, 36px, 0);
+}
+.reveal[data-reveal-kind="media"] {
+  transform: translate3d(0, 32px, 0) scale(0.985);
+  clip-path: inset(0 0 8% 0);
 }
 .reveal.in-view {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
+  clip-path: inset(0);
+}
+.reveal:focus-within {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0);
+  transition-delay: 0ms;
 }
 @media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .reveal, .reveal[data-reveal-kind] { opacity: 1; transform: none; clip-path: none; transition: none; }
 }
 
 /* Timeline mosaic: real media forms the visual identity. */

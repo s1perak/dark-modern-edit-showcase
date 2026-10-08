@@ -1,81 +1,95 @@
 import { useEffect } from "react";
 
-/**
- * Clean, consistent scroll-reveal across the page.
- *
- * Strategy:
- * - Target a curated set of meaningful content blocks (section headers, cards,
- *   list items, footer rows) instead of every descendant.
- * - Apply a consistent fade-up with a small per-group stagger so siblings
- *   animate in sequence rather than all at once.
- */
+/** Animate individual content, never gallery columns or modal containers. */
 export function useScrollReveal() {
   useEffect(() => {
     if (typeof window === "undefined") return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (motionPreference.matches) return;
 
-    // Selectors for the elements we want to reveal. Kept intentionally tight
-    // so animations feel consistent rather than chaotic.
-    const groupSelectors = [
-      // Section intro blocks (eyebrow + heading + copy wrapper)
-      'section[id]:not(#top) > div',
-      // Cards / list items inside grids
-      'section[id] [class*="grid"] > *',
-      // Contact link rows
-      'section#contact a',
-      // Footer content
+    const targets = [
+      'section:not(#top) .eyebrow',
+      'section:not(#top) h2',
+      '#work .site-container > div:first-child > p',
+      '#about .lg\\:col-span-8 > p',
+      '#about .lg\\:col-span-8 > div:last-child',
+      '.mosaic-item',
+      '.service-item',
+      '#contact .site-container > div > p:not(.eyebrow)',
+      '#contact .contact-link',
       'footer > *',
-      // Manual opt-in
       '[data-reveal]',
-    ];
+    ].join(',');
 
     const observed = new WeakSet<Element>();
+    const registered = new Set<HTMLElement>();
+    const reveal = (element: HTMLElement) => {
+      element.classList.add('in-view');
+      observer.unobserve(element);
+    };
 
     const observer = new IntersectionObserver(
       (entries) => {
+        const entering = entries.filter((entry) => entry.isIntersecting);
+        entering.sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top || a.boundingClientRect.left - b.boundingClientRect.left);
+        entering.forEach((entry, index) => {
+          const element = entry.target as HTMLElement;
+          // Stagger only content entering together, not off-screen siblings.
+          element.style.setProperty('--reveal-delay', `${Math.min(index, 4) * 75}ms`);
+          reveal(element);
+        });
         for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('in-view');
-            observer.unobserve(entry.target);
+          // Never hide content skipped by a fast scroll or anchor navigation.
+          if (!entry.isIntersecting && entry.boundingClientRect.bottom < 0) {
+            reveal(entry.target as HTMLElement);
           }
         }
       },
-      { threshold: 0, rootMargin: '0px 0px -8% 0px' }
+      { threshold: 0, rootMargin: '0px 0px -40px 0px' }
     );
 
     const attach = () => {
-      groupSelectors.forEach((sel) => {
-        const nodes = document.querySelectorAll<HTMLElement>(sel);
-        // Group siblings by parent so stagger is consistent within a group.
-        const byParent = new Map<Element, HTMLElement[]>();
-        nodes.forEach((el) => {
-          if (observed.has(el)) return;
-          const parent = el.parentElement;
-          if (!parent) return;
-          if (!byParent.has(parent)) byParent.set(parent, []);
-          byParent.get(parent)!.push(el);
-        });
-
-        byParent.forEach((siblings) => {
-          siblings.forEach((el, i) => {
-            observed.add(el);
-            el.classList.add('reveal');
-            el.style.transitionDelay = `${Math.min(i, 5) * 90}ms`;
-            observer.observe(el);
-          });
-        });
+      document.querySelectorAll<HTMLElement>(targets).forEach((element) => {
+        if (observed.has(element) || element.closest('[role="dialog"]')) return;
+        // Do not stack transforms on explicitly animated parents and children.
+        if (element.parentElement?.closest('.reveal, [data-reveal]')) return;
+        observed.add(element);
+        registered.add(element);
+        element.dataset.revealKind = element.matches('.mosaic-item')
+          ? 'media'
+          : element.matches('h2') ? 'heading' : 'content';
+        element.classList.add('reveal');
+        observer.observe(element);
       });
     };
 
     attach();
 
-    // Re-scan when new content mounts (e.g. after the loading screen hides).
     const mo = new MutationObserver(() => attach());
     mo.observe(document.body, { childList: true, subtree: true });
+    const onFocus = (event: FocusEvent) => {
+      if (!(event.target instanceof Element)) return;
+      const element = event.target.closest<HTMLElement>('.reveal');
+      if (!element) return;
+      element.style.setProperty('--reveal-delay', '0ms');
+      reveal(element);
+    };
+    const onMotionChange = () => {
+      if (motionPreference.matches) registered.forEach(reveal);
+    };
+    document.addEventListener('focusin', onFocus);
+    motionPreference.addEventListener('change', onMotionChange);
 
     return () => {
       mo.disconnect();
       observer.disconnect();
+      document.removeEventListener('focusin', onFocus);
+      motionPreference.removeEventListener('change', onMotionChange);
+      registered.forEach((element) => {
+        element.classList.remove('reveal', 'in-view');
+        element.style.removeProperty('--reveal-delay');
+        delete element.dataset.revealKind;
+      });
     };
   }, []);
 }
