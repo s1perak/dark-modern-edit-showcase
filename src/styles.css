@@ -269,6 +269,35 @@
   position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--card) 55%, transparent) 0%, transparent 65%);
 }
+/* Slow-drifting gradient glows behind the headline. */
+.hero-aurora {
+  position: absolute; z-index: 1; pointer-events: none;
+  width: 62vmax; height: 62vmax; border-radius: 50%;
+  filter: blur(90px); will-change: transform;
+}
+.hero-aurora-1 {
+  left: -12%; top: -18%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 38%, transparent) 0%, transparent 62%);
+  animation: aurora-drift-1 26s ease-in-out infinite alternate;
+}
+.hero-aurora-2 {
+  right: -16%; bottom: -24%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 24%, transparent) 0%, transparent 60%);
+  animation: aurora-drift-2 32s ease-in-out infinite alternate;
+}
+@keyframes aurora-drift-1 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(9vw, 6vh, 0) scale(1.12); }
+  100% { transform: translate3d(-4vw, 12vh, 0) scale(0.94); }
+}
+@keyframes aurora-drift-2 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-8vw, -7vh, 0) scale(1.1); }
+  100% { transform: translate3d(5vw, -12vh, 0) scale(0.92); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-aurora { animation: none; }
+}
 .hero-stage {
   height: 100svh; min-height: 720px;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -302,30 +331,6 @@
 .hero-frame-2 { right: 4%; top: 24%; width: 13%; aspect-ratio: 9/16; transform: rotate(6deg); opacity: .65; }
 .hero-frame-3 { left: 14%; bottom: 12%; width: 15%; aspect-ratio: 1/1; transform: rotate(-8deg); opacity: .45; }
 .hero-frame-4 { right: 10%; bottom: 16%; width: 18%; aspect-ratio: 16/9; transform: rotate(3deg); opacity: .7; }
-.hero-orb { position: absolute; z-index: 1; pointer-events: none; filter: drop-shadow(0 34px 70px rgb(0 0 0 / 0.6)); }
-/* Slow turn for the tall objects. Uses the standalone `rotate` property so it
-   composes with the translate-based float instead of overriding it. */
-@keyframes orb-tilt { 0%, 100% { rotate: -5deg; } 50% { rotate: 5deg; } }
-.hero-orb-1 { left: 14%; top: 23%; width: 215px; opacity: .55; animation-duration: 11s; animation-delay: -5s; }
-.hero-orb-2 { right: 11%; top: 28%; width: 200px; opacity: .62; animation-duration: 9s; animation-delay: -2s; }
-.hero-orb-3 { right: 31%; top: 8%; width: 122px; opacity: .5; animation-name: float-slow, orb-tilt; animation-duration: 13s; animation-delay: -7s; }
-.hero-orb-4 { left: 37%; bottom: 17%; width: 94px; opacity: .58; animation-duration: 8s; animation-delay: -3s; }
-.hero-orb-5 { left: 17%; top: 56%; width: 106px; opacity: .5; animation-name: float-slow, orb-tilt; animation-duration: 15s; animation-delay: -8s; }
-
-/* Smaller screens: the floating objects thin out so the headline and subtext stay clear. */
-@media (max-width: 1023px) {
-  .hero-orb-1 { left: 4%; top: 19%; width: 140px; opacity: .45; }
-  .hero-orb-2 { right: 4%; top: 25%; width: 130px; opacity: .5; }
-  .hero-orb-3, .hero-orb-4, .hero-orb-5 { display: none; }
-}
-@media (max-width: 639px) {
-  .hero-orb-3, .hero-orb-4, .hero-orb-5 { display: block; }
-  .hero-orb-1 { left: 4%; top: 9%; width: 112px; opacity: .5; }
-  .hero-orb-2 { right: 5%; top: 15%; width: 100px; opacity: .5; }
-  .hero-orb-3 { right: 8%; top: auto; bottom: 15%; width: 92px; opacity: .45; }
-  .hero-orb-4 { left: 13%; top: auto; bottom: 26%; width: 62px; opacity: .5; }
-  .hero-orb-5 { left: 20%; top: auto; bottom: 8%; width: 76px; opacity: .45; }
-}
 
 .section-title { font-size: clamp(48px, 6vw, 92px); line-height: .88; font-weight: 800; }
 .contact-title { font-size: clamp(56px, 9vw, 136px); line-height: .84; font-weight: 800; }
