@@ -19,7 +19,7 @@ const serviceGroups = [
 
 export function Services() {
   return (
-    <section id="services" className="relative pt-20 pb-3 sm:pt-28 sm:pb-4">
+    <section id="services" className="relative pt-20 pb-2 sm:pt-28 sm:pb-3">
       <div className="site-container">
         <div className="mb-14 flex flex-col items-start justify-between gap-6 border-t border-border/60 pt-14 md:flex-row md:items-end">
           <div>
