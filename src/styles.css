@@ -269,6 +269,35 @@
   position: absolute; inset: 0; pointer-events: none;
   background: radial-gradient(circle at 50% 45%, color-mix(in srgb, var(--card) 55%, transparent) 0%, transparent 65%);
 }
+/* Slow-drifting gradient glows behind the headline. */
+.hero-aurora {
+  position: absolute; z-index: 1; pointer-events: none;
+  width: 62vmax; height: 62vmax; border-radius: 50%;
+  filter: blur(90px); will-change: transform;
+}
+.hero-aurora-1 {
+  left: -12%; top: -18%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 26%, transparent) 0%, transparent 62%);
+  animation: aurora-drift-1 26s ease-in-out infinite alternate;
+}
+.hero-aurora-2 {
+  right: -16%; bottom: -24%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--primary) 16%, transparent) 0%, transparent 60%);
+  animation: aurora-drift-2 32s ease-in-out infinite alternate;
+}
+@keyframes aurora-drift-1 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(9vw, 6vh, 0) scale(1.12); }
+  100% { transform: translate3d(-4vw, 12vh, 0) scale(0.94); }
+}
+@keyframes aurora-drift-2 {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-8vw, -7vh, 0) scale(1.1); }
+  100% { transform: translate3d(5vw, -12vh, 0) scale(0.92); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-aurora { animation: none; }
+}
 .hero-stage {
   height: 100svh; min-height: 720px;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
