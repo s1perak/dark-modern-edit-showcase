@@ -327,7 +327,7 @@
   background-size: 220px 220px;
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-dots { animation: none; }
+  .hero-blade { animation: none; }
 }
 .hero-stage {
   height: 100svh; min-height: 720px;
