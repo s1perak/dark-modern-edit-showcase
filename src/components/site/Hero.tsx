@@ -1,10 +1,9 @@
 export function Hero() {
   return (
     <section id="top" className="hero-canvas relative overflow-hidden border-b border-border">
-      <div className="hero-glow" aria-hidden="true" />
-      <div className="hero-wave hero-wave-1" aria-hidden="true" />
-      <div className="hero-wave hero-wave-2" aria-hidden="true" />
-      <div className="hero-wave hero-wave-3" aria-hidden="true" />
+      <div className="hero-dots hero-dots-1" aria-hidden="true" />
+      <div className="hero-dots hero-dots-2" aria-hidden="true" />
+      <div className="hero-dots hero-dots-3" aria-hidden="true" />
       <div className="hero-fade" aria-hidden="true" />
       <div className="hero-grain" aria-hidden="true" />
       <div className="hero-stage site-container relative">
