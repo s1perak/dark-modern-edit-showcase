@@ -1,4 +1,5 @@
 # Project rules
+- Deduplicate React and prebundle its renderer and JSX runtimes together in Vite, so dependency updates cannot split hook dispatchers across React instances.
 - Keep the experimental Three.js hero room in a standalone background component with resource cleanup and reduced-motion support, so background changes never affect hero copy or portfolio playback.
 - Keep portfolio project data and playback behavior separate from presentation changes so redesigns preserve video order and modal support.
 - Define portfolio colors, typography, and visual effects in the global stylesheet and use semantic tokens in site components so the visual direction remains consistent.
