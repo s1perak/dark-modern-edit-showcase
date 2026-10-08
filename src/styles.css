@@ -281,16 +281,6 @@
 
 /* Immersive dark showroom hero: soft beige light leak blooming over black. */
 .hero-canvas { min-height: 100svh; }
-:root {
-  --room-background: #0b0b0b;
-  --room-wall: #292826;
-  --room-frame: #393733;
-  --room-light: #e8dfce;
-  --room-vignette: radial-gradient(ellipse at center, transparent 35%, color-mix(in srgb, var(--background) 55%, transparent) 100%);
-}
-.hero-room { position: absolute; inset: 0; z-index: 1; background: var(--room-background); }
-.hero-room canvas { display: block; width: 100%; height: 100%; }
-.hero-room::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: var(--room-vignette); }
 /* Large blurred warm glows drifting slowly, like light leaking into a dark room. */
 .hero-leak {
   position: absolute; z-index: 1; pointer-events: none;
