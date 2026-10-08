@@ -2,11 +2,11 @@ export function Hero() {
   return (
     <section id="top" className="hero-canvas relative overflow-hidden border-b border-border">
       <div className="hero-glow" aria-hidden="true" />
-      <div className="hero-aurora hero-aurora-1" aria-hidden="true" />
-      <div className="hero-aurora hero-aurora-2" aria-hidden="true" />
-      <div className="hero-sweep" aria-hidden="true" />
+      <div className="hero-wave hero-wave-1" aria-hidden="true" />
+      <div className="hero-wave hero-wave-2" aria-hidden="true" />
+      <div className="hero-wave hero-wave-3" aria-hidden="true" />
+      <div className="hero-fade" aria-hidden="true" />
       <div className="hero-grain" aria-hidden="true" />
-      <div className="hero-vignette" aria-hidden="true" />
       <div className="hero-stage site-container relative">
         <div className="hero-copy animate-fade-up">
           <p className="mb-6 text-[10px] font-bold uppercase text-primary opacity-80">Portfolio — Robert Blazevic</p>
