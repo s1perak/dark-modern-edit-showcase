@@ -80,13 +80,13 @@ export function ProjectMatcher() {
             </div>
             {matches.length > 0 && (
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Related work</p>
-                <div className="mt-4 grid gap-4 sm:grid-cols-3">
+                <p className="eyebrow">Related work</p>
+                <div className="mt-6 grid gap-6 sm:grid-cols-3">
                   {matches.map((p) => (
                     <button key={p.id} type="button" onClick={() => setActive(p)} className="group text-left">
                       <img src={p.thumbnail} alt={p.title} loading="lazy"
-                        className={`w-full rounded-lg object-cover transition-opacity group-hover:opacity-80 ${p.orientation === "portrait" ? "aspect-[9/16]" : "aspect-video"}`} />
-                      <span className="mt-2 block text-sm">{p.title}</span>
+                        className={`w-full rounded-xl object-cover transition-opacity group-hover:opacity-80 ${p.orientation === "portrait" ? "aspect-[9/16]" : "aspect-video"}`} />
+                      <span className="mt-3 block text-base">{p.title}</span>
                     </button>
                   ))}
                 </div>
