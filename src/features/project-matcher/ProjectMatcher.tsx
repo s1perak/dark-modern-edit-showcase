@@ -40,26 +40,26 @@ export function ProjectMatcher() {
   const matches = result ? all.filter((p) => result.projectIds.includes(p.id)) : [];
 
   return (
-    <section id="match" className="relative py-2 sm:py-3">
+    <section id="match" className="relative py-16 sm:py-24">
       <div className="site-container">
-      <div className="border-t border-border/60 pt-5" data-reveal>
-        <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">AI project match</p>
-        <h2 className="section-title mt-4 uppercase">Tell me about your video</h2>
-        <p className="mt-4 max-w-xl text-muted-foreground">
+      <div className="border-t border-border/60 pt-12 sm:pt-16" data-reveal>
+        <p className="eyebrow mb-6">AI project match</p>
+        <h2 className="section-title uppercase">Tell me about your video</h2>
+        <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-muted-foreground">
           Describe your project and get instant suggestions for the right services and similar work.
         </p>
 
-        <form onSubmit={submit} className="mt-8 flex flex-col gap-4">
+        <form onSubmit={submit} className="mt-12 flex flex-col gap-6">
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
             maxLength={2000}
-            rows={4}
+            rows={6}
             placeholder="e.g. I run a fitness YouTube channel and need punchy edits plus shorts for TikTok…"
-            className="w-full resize-none rounded-xl border border-border bg-card/60 p-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+            className="w-full resize-none rounded-2xl border border-border bg-card/60 p-6 text-base leading-relaxed text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
           />
           <div>
-            <Button type="submit" disabled={loading || text.trim().length < 10}>
+            <Button type="submit" size="lg" className="h-14 px-10 text-base" disabled={loading || text.trim().length < 10}>
               {loading ? "Matching…" : "Get recommendations"}
             </Button>
           </div>
@@ -68,25 +68,25 @@ export function ProjectMatcher() {
         {error && <p className="mt-6 text-destructive">{error}</p>}
 
         {result && (
-          <div className="mt-10 space-y-8">
-            <p className="text-lg">{result.summary}</p>
-            <div className="grid gap-4 md:grid-cols-3">
+          <div className="mt-14 space-y-10">
+            <p className="max-w-3xl text-xl leading-relaxed">{result.summary}</p>
+            <div className="grid gap-6 md:grid-cols-3">
               {result.services.map((s) => (
-                <div key={s.name} className="rounded-xl border border-border bg-card/60 p-5">
-                  <h3 className="text-lg tracking-tight">{s.name}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{s.reason}</p>
+                <div key={s.name} className="rounded-2xl border border-border bg-card/60 p-7">
+                  <h3 className="text-xl tracking-tight">{s.name}</h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">{s.reason}</p>
                 </div>
               ))}
             </div>
             {matches.length > 0 && (
               <div>
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">Related work</p>
-                <div className="mt-4 grid gap-4 sm:grid-cols-3">
+                <p className="eyebrow">Related work</p>
+                <div className="mt-6 grid gap-6 sm:grid-cols-3">
                   {matches.map((p) => (
                     <button key={p.id} type="button" onClick={() => setActive(p)} className="group text-left">
                       <img src={p.thumbnail} alt={p.title} loading="lazy"
-                        className={`w-full rounded-lg object-cover transition-opacity group-hover:opacity-80 ${p.orientation === "portrait" ? "aspect-[9/16]" : "aspect-video"}`} />
-                      <span className="mt-2 block text-sm">{p.title}</span>
+                        className={`w-full rounded-xl object-cover transition-opacity group-hover:opacity-80 ${p.orientation === "portrait" ? "aspect-[9/16]" : "aspect-video"}`} />
+                      <span className="mt-3 block text-base">{p.title}</span>
                     </button>
                   ))}
                 </div>
