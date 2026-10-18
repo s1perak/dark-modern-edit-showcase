@@ -143,6 +143,8 @@
     font-weight: 200;
     color: var(--primary);
     display: inline-block;
+    /* Reserve actual space for slanted final glyphs, including after fonts load. */
+    padding-inline-end: 0.18em;
   }
   .eyebrow {
     font-family: var(--font-label);
@@ -245,14 +247,12 @@
 .reveal.in-view {
   opacity: 1;
   transform: none;
-  /* Negative insets let italic glyph overhangs (e.g. final S/D) render
-     outside the box instead of being sliced by the clip. */
-  clip-path: inset(-1em -0.5em -1em -0.5em);
+  clip-path: none;
 }
 .reveal:focus-within {
   opacity: 1;
   transform: none;
-  clip-path: inset(-1em -0.5em -1em -0.5em);
+  clip-path: none;
   transition-delay: 0ms;
 }
 @media (prefers-reduced-motion: reduce) {
