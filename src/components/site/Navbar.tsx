@@ -28,7 +28,7 @@ export function Navbar() {
         <Button asChild variant="link" className="h-auto gap-2.5 p-0 text-foreground hover:no-underline">
         <a href="#top" className="brand-name flex items-center text-sm">
           <img src="/favicon.png" alt="Robert Blazevic logo" className="h-9 w-9 rounded-full" />
-          <span className="text-[10px] font-bold uppercase">Robert Blazevic</span>
+          <span className="text-xs font-bold uppercase">Robert Blazevic</span>
         </a>
         </Button>
 
