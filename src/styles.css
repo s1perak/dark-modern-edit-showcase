@@ -245,12 +245,14 @@
 .reveal.in-view {
   opacity: 1;
   transform: none;
-  clip-path: inset(0);
+  /* Negative insets let italic glyph overhangs (e.g. final S/D) render
+     outside the box instead of being sliced by the clip. */
+  clip-path: inset(-1em -0.5em -1em -0.5em);
 }
 .reveal:focus-within {
   opacity: 1;
   transform: none;
-  clip-path: inset(0);
+  clip-path: inset(-1em -0.5em -1em -0.5em);
   transition-delay: 0ms;
 }
 @media (prefers-reduced-motion: reduce) {
