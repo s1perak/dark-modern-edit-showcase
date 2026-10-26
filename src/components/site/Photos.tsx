@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import before from "@/assets/before.avif.asset.json";
-import after from "@/assets/after.png.asset.json";
+import after from "@/assets/after.jpg.asset.json";
 import beforeCar from "@/assets/before-car.jpg.asset.json";
 import afterCar from "@/assets/after-car.jpg.asset.json";
 
