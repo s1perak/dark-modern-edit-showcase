@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/site/Navbar";
 import { Hero } from "@/components/site/Hero";
 import { Work } from "@/components/site/Work";
+import { Photos } from "@/components/site/Photos";
 import { About } from "@/components/site/About";
 import { Services } from "@/components/site/Services";
 import { Contact } from "@/components/site/Contact";
@@ -20,6 +21,7 @@ export default function App() {
         <Navbar />
         <Hero />
         <Work />
+        <Photos />
         <About />
         <Services />
         <ProjectMatcher />
