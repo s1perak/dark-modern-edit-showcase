@@ -1,8 +1,9 @@
 import { useRef, useState } from "react";
-import before from "@/assets/before.avif.asset.json";
-import after from "@/assets/after.jpg.asset.json";
-import beforeCar from "@/assets/before-car.jpg.asset.json";
-import afterCar from "@/assets/after-car.jpg.asset.json";
+// Bundled locally (not CDN pointers) so photos load on the Vercel-hosted domain too.
+import before from "@/assets/before.avif";
+import after from "@/assets/after.jpg";
+import beforeCar from "@/assets/before-car.jpg";
+import afterCar from "@/assets/after-car.jpg";
 
 function CompareCard({
   beforeSrc,
@@ -67,8 +68,8 @@ function CompareCard({
 
 export function Photos() {
   const cards = [
-    { beforeSrc: before.url, afterSrc: after.url, alt: "portrait" },
-    { beforeSrc: beforeCar.url, afterSrc: afterCar.url, alt: "car" },
+    { beforeSrc: before, afterSrc: after, alt: "portrait" },
+    { beforeSrc: beforeCar, afterSrc: afterCar, alt: "car" },
   ];
 
   return (
