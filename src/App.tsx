@@ -18,6 +18,7 @@ export default function App() {
   useScrollReveal();
   return (
     <main className="relative text-foreground">
+      <SiteBackdrop />
       <HeroParticles />
       <div className="relative z-10">
         <LoadingScreen />

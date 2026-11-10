@@ -65,7 +65,7 @@ export function HeroParticles() {
         const q = parts[k];
         const jx = reduce ? 0 : Math.sin(t / 900 + k) * 0.6;
         const jy = reduce ? 0 : Math.cos(t / 1100 + k * 1.3) * 0.6;
-        ctx.globalAlpha = q.a * (1 - e * 0.55);
+        ctx.globalAlpha = q.a * (1 - e * 0.55) * dim;
         ctx.fillStyle = `rgb(${q.r},${q.g},${q.b})`;
         // Wrap scattered dots around the viewport so the background never empties.
         let px = q.x + q.vx * spread + jx, py = q.y + q.vy * spread + jy;
