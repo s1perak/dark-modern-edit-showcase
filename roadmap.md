@@ -3,7 +3,7 @@
 
 # Roadmap
 
-- [ ] Smooth button-driven section scrolling and include portrait-colored shadow dots without filling the background.
+- [x] Smooth button-driven section scrolling and include portrait-colored shadow dots without filling the background.
 
 - [x] Enlarge and sharpen the particle portrait, slow the initial scatter slightly, and verify continued scroll movement beyond the hero.
 
