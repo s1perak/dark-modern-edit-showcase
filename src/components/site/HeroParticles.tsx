@@ -28,9 +28,9 @@ export function HeroParticles() {
       if (!img.complete || !img.naturalWidth) return;
       // Tall portrait: fill most of the viewport height, floating above the hero copy.
       // On narrow screens the width limit takes over so the face stays readable on a phone.
-      const scale = Math.min((w * 1.06) / img.naturalWidth, (h * 0.92) / img.naturalHeight);
+      const scale = Math.min((w * 1.09) / img.naturalWidth, (h * 0.95) / img.naturalHeight);
       const iw = img.naturalWidth * scale, ih = img.naturalHeight * scale;
-      const ox = (w - iw) / 2, oy = (h - ih) / 2 - h * 0.05;
+      const ox = (w - iw) / 2, oy = (h - ih) / 2 + h * 0.03;
       const step = w < 640 ? 1.8 : 2.1;
       const off = document.createElement("canvas");
       off.width = Math.ceil(iw / step); off.height = Math.ceil(ih / step);
