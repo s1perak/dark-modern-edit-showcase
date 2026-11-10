@@ -7,3 +7,4 @@
 - Apply scroll reveals to individual content targets, not layout wrappers or dialogs, so staggered motion cannot disturb gallery geometry or playback overlays.
 - Build the portfolio as a media-first dark showroom with one mixed-format Selected Cuts mosaic driven by reusable project data, because landscape and short-form work should coexist without duplicating playback content.- Keep the AI project matcher self-contained (src/features/project-matcher + supabase/functions/project-matcher, one line in App.tsx) so it can be removed without touching other sections.
 - Import site images as bundled files in src/assets, not .asset.json CDN pointers, because the custom domain is hosted on Vercel where /__l5e asset URLs do not resolve.
+- Keep portrait particles isolated in the background component with continuous scroll-driven displacement and viewport wrapping, so movement remains reversible and responsive beyond the hero.

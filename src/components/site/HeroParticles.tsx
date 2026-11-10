@@ -28,13 +28,14 @@ export function HeroParticles() {
       if (!img.complete || !img.naturalWidth) return;
       // Tall portrait: fill most of the viewport height, floating above the hero copy.
       // On narrow screens the width limit takes over so the face stays readable on a phone.
-      const scale = Math.min((w * 0.92) / img.naturalWidth, (h * 0.66) / img.naturalHeight);
+      const scale = Math.min((w * 0.96) / img.naturalWidth, (h * 0.78) / img.naturalHeight);
       const iw = img.naturalWidth * scale, ih = img.naturalHeight * scale;
-      const ox = (w - iw) / 2, oy = (h - ih) / 2 - h * 0.1;
-      const step = w < 640 ? 4 : 3;
+      const ox = (w - iw) / 2, oy = (h - ih) / 2 - h * 0.06;
+      const step = w < 640 ? 2 : 2.25;
       const off = document.createElement("canvas");
       off.width = Math.ceil(iw / step); off.height = Math.ceil(ih / step);
-      const o = off.getContext("2d")!;
+      const o = off.getContext("2d");
+      if (!o) return;
       o.drawImage(img, 0, 0, off.width, off.height);
       const data = o.getImageData(0, 0, off.width, off.height).data;
       parts = [];
@@ -45,14 +46,13 @@ export function HeroParticles() {
         if (raw < 18) continue;
         // Lift the shadows so the dim side of the face still reads.
         const lum = Math.pow(raw / 255, 0.55) * 255;
-        if (Math.random() > 0.35 + lum / 280) continue;
         const ang = Math.random() * Math.PI * 2;
         const sp = 0.4 + Math.random() * 1.6;
         parts.push({
           x: ox + x * step, y: oy + y * step,
           vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 0.3,
           r: Math.min(255, data[i] * 1.9 + 28), g: Math.min(255, data[i + 1] * 1.85 + 26), b: Math.min(255, data[i + 2] * 1.8 + 22),
-          a: Math.min(0.95, 0.18 + lum / 190), s: 0.8 + Math.random() * 1.2,
+          a: Math.min(1, 0.25 + lum / 180), s: 1 + Math.random() * 0.8,
           f1: 0.6 + Math.random() * 1.1, f2: 0.6 + Math.random() * 1.1,
           p1: Math.random() * Math.PI * 2, p2: Math.random() * Math.PI * 2,
         });
@@ -60,10 +60,11 @@ export function HeroParticles() {
     };
 
     const draw = (t: number) => {
-      const p = reduce ? 0 : Math.min(1, Math.max(0, window.scrollY / (h * 0.9 || 1)));
+      const scroll = reduce ? 0 : Math.max(0, window.scrollY / (h || 1));
+      const p = Math.min(1, scroll / 1.08);
       const e = p * p * (3 - 2 * p);
       // Keep drifting slowly after the explosion so the dots live behind the whole site.
-      const extra = 0;
+      const extra = Math.log1p(Math.max(0, scroll - 1.08)) * 0.08;
       const spread = (e + extra) * Math.max(w, h) * 0.42;
       // Past the hero the dots ease back into a faint texture.
       const below = reduce ? 0 : Math.min(1, Math.max(0, (window.scrollY - h * 0.6) / (h * 0.7)));
@@ -71,16 +72,17 @@ export function HeroParticles() {
       ctx.clearRect(0, 0, w, h);
       for (let k = 0; k < parts.length; k++) {
         const q = parts[k];
-        const jx = reduce ? 0 : Math.sin(t / 900 + k) * 0.6;
-        const jy = reduce ? 0 : Math.cos(t / 1100 + k * 1.3) * 0.6;
+        const jx = reduce ? 0 : Math.sin(t / 900 + k) * 0.25;
+        const jy = reduce ? 0 : Math.cos(t / 1100 + k * 1.3) * 0.25;
         // Past the hero the dots keep drifting slowly on bounded loops instead of freezing.
         const amp = 34 * below;
-        const dx = reduce ? 0 : Math.sin((t / 8200) * q.f1 + q.p1) * amp;
-        const dy = reduce ? 0 : Math.cos((t / 10600) * q.f2 + q.p2) * amp * 0.7;
+        const dx = reduce ? 0 : Math.sin((t / 8200 + scroll * 0.45) * q.f1 + q.p1) * amp;
+        const dy = reduce ? 0 : Math.cos((t / 10600 + scroll * 0.45) * q.f2 + q.p2) * amp * 0.7;
         ctx.globalAlpha = q.a * (1 - e * 0.55) * dim;
         ctx.fillStyle = `rgb(${q.r},${q.g},${q.b})`;
         // Wrap scattered dots around the viewport so the background never empties.
-        let px = q.x + q.vx * spread + jx + dx, py = q.y + q.vy * spread + jy + dy;
+        const px = ((q.x + q.vx * spread + jx + dx) % w + w) % w;
+        const py = ((q.y + q.vy * spread + jy + dy) % h + h) % h;
         ctx.fillRect(px, py, q.s, q.s);
       }
       ctx.globalAlpha = 1;
