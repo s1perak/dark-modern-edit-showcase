@@ -28,10 +28,10 @@ export function HeroParticles() {
       if (!img.complete || !img.naturalWidth) return;
       // Tall portrait: fill most of the viewport height, floating above the hero copy.
       // On narrow screens the width limit takes over so the face stays readable on a phone.
-      const scale = Math.min((w * 0.96) / img.naturalWidth, (h * 0.78) / img.naturalHeight);
+      const scale = Math.min((w * 1.06) / img.naturalWidth, (h * 0.92) / img.naturalHeight);
       const iw = img.naturalWidth * scale, ih = img.naturalHeight * scale;
-      const ox = (w - iw) / 2, oy = (h - ih) / 2 - h * 0.06;
-      const step = w < 640 ? 2 : 2.25;
+      const ox = (w - iw) / 2, oy = (h - ih) / 2 - h * 0.05;
+      const step = w < 640 ? 2.1 : 2.5;
       const off = document.createElement("canvas");
       off.width = Math.ceil(iw / step); off.height = Math.ceil(ih / step);
       const o = off.getContext("2d");
@@ -78,7 +78,7 @@ export function HeroParticles() {
         const amp = 34 * below;
         const dx = reduce ? 0 : Math.sin((t / 8200 + scroll * 0.45) * q.f1 + q.p1) * amp;
         const dy = reduce ? 0 : Math.cos((t / 10600 + scroll * 0.45) * q.f2 + q.p2) * amp * 0.7;
-        ctx.globalAlpha = q.a * 0.72 * (1 - e * 0.55) * dim;
+        ctx.globalAlpha = q.a * 0.55 * (1 - e * 0.55) * dim;
         ctx.fillStyle = `rgb(${q.r},${q.g},${q.b})`;
         // Wrap scattered dots around the viewport so the background never empties.
         const px = ((q.x + q.vx * spread + jx + dx) % w + w) % w;
