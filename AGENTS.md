@@ -10,3 +10,4 @@
 - Keep portrait particles isolated in the background component with continuous scroll-driven displacement outward from the portrait (no viewport wrapping), so every dot visibly originates from the face.
 - Handle same-page navigation in one cancellable, reduced-motion-aware scroll hook so buttons share smooth easing without altering manual scrolling.
 - Signal loading-screen completion with the portfolio:ready event so the isolated portrait background can time its entrance without coupling to page copy.
+- Draw portrait particles into one reusable pixel buffer and use unfiltered radial background lights to avoid per-dot canvas commands and full-page blur compositing bottlenecks.
