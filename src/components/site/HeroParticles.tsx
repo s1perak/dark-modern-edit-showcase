@@ -23,6 +23,7 @@ export function HeroParticles() {
     };
     window.addEventListener("portfolio:ready", onReady);
     let w = 0, h = 0;
+    let pixels: ImageData | undefined;
     // Tiny dots do not need a retina-sized drawing surface; keep fill work predictable.
     const dpr = 1;
     const img = new Image();
@@ -32,6 +33,7 @@ export function HeroParticles() {
       const rect = canvas.getBoundingClientRect();
       w = rect.width; h = rect.height;
       canvas.width = w * dpr; canvas.height = h * dpr;
+      pixels = ctx.createImageData(canvas.width, canvas.height);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       if (!img.complete || !img.naturalWidth) return;
       // Tall portrait: fill most of the viewport height, floating above the hero copy.
@@ -112,12 +114,14 @@ export function HeroParticles() {
       // Past the hero the dots ease back into a faint texture.
       const below = reduce ? 0 : Math.min(1, Math.max(0, (window.scrollY - h * 0.6) / (h * 0.7)));
       const dim = 1 - below * 0.7;
-      ctx.clearRect(0, 0, w, h);
+      if (!pixels) {
+        raf = requestAnimationFrame(draw);
+        return;
+      }
+      pixels.data.fill(0);
       const opacity = 0.6 * (1 - e * 0.5) * dim;
       for (const batch of batches) {
-        ctx.globalAlpha = batch.alpha * opacity;
-        ctx.fillStyle = batch.color;
-        ctx.beginPath();
+        const alpha = batch.alpha * opacity;
         for (const q of batch.particles) {
         // Past the hero the dots keep drifting slowly on bounded loops instead of freezing.
         const amp = 34 * below;
@@ -127,11 +131,20 @@ export function HeroParticles() {
         const px = q.x + q.vx * spread + dx;
         const py = q.y + q.vy * spread + dy;
         if (px < -2 || py < -2 || px > w + 2 || py > h + 2) continue;
-        ctx.rect(Math.round(px), Math.round(py), q.s, q.s);
+        const x = Math.round(px), y = Math.round(py);
+        const size = q.s > 1.5 ? 2 : 1;
+        for (let dy = 0; dy < size; dy++) for (let dx = 0; dx < size; dx++) {
+          const xx = x + dx, yy = y + dy;
+          if (xx < 0 || yy < 0 || xx >= canvas.width || yy >= canvas.height) continue;
+          const index = (yy * canvas.width + xx) * 4;
+          pixels.data[index] = q.r;
+          pixels.data[index + 1] = q.g;
+          pixels.data[index + 2] = q.b;
+          pixels.data[index + 3] = alpha * 255;
         }
-        ctx.fill();
+        }
       }
-      ctx.globalAlpha = 1;
+      ctx.putImageData(pixels, 0, 0);
       raf = requestAnimationFrame(draw);
     };
 
