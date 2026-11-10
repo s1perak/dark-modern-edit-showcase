@@ -31,7 +31,7 @@ export function HeroParticles() {
       const scale = Math.min((w * 1.06) / img.naturalWidth, (h * 0.92) / img.naturalHeight);
       const iw = img.naturalWidth * scale, ih = img.naturalHeight * scale;
       const ox = (w - iw) / 2, oy = (h - ih) / 2 - h * 0.05;
-      const step = w < 640 ? 2.1 : 2.5;
+      const step = w < 640 ? 1.8 : 2.1;
       const off = document.createElement("canvas");
       off.width = Math.ceil(iw / step); off.height = Math.ceil(ih / step);
       const o = off.getContext("2d");
@@ -66,24 +66,25 @@ export function HeroParticles() {
       // Keep drifting slowly after the explosion so the dots live behind the whole site.
       const extra = Math.log1p(Math.max(0, scroll - 1.08)) * 0.08;
       // The portrait starts already a little scattered, then explodes further on scroll.
-      const spread = (0.16 + (e + extra) * 0.86) * Math.max(w, h) * 0.42;
+      const spread = (0.035 + (e + extra) * 0.95) * Math.max(w, h) * 0.42;
       // Past the hero the dots ease back into a faint texture.
       const below = reduce ? 0 : Math.min(1, Math.max(0, (window.scrollY - h * 0.6) / (h * 0.7)));
       const dim = 1 - below * 0.7;
       ctx.clearRect(0, 0, w, h);
       for (let k = 0; k < parts.length; k++) {
         const q = parts[k];
-        const jx = reduce ? 0 : Math.sin(t / 900 + k) * 0.25;
-        const jy = reduce ? 0 : Math.cos(t / 1100 + k * 1.3) * 0.25;
+        const jx = reduce ? 0 : Math.sin(t / 900 + k) * 0.15;
+        const jy = reduce ? 0 : Math.cos(t / 1100 + k * 1.3) * 0.15;
         // Past the hero the dots keep drifting slowly on bounded loops instead of freezing.
         const amp = 34 * below;
         const dx = reduce ? 0 : Math.sin((t / 8200 + scroll * 0.45) * q.f1 + q.p1) * amp;
         const dy = reduce ? 0 : Math.cos((t / 10600 + scroll * 0.45) * q.f2 + q.p2) * amp * 0.7;
-        ctx.globalAlpha = q.a * 0.55 * (1 - e * 0.55) * dim;
+        ctx.globalAlpha = q.a * 0.6 * (1 - e * 0.5) * dim;
         ctx.fillStyle = `rgb(${q.r},${q.g},${q.b})`;
-        // Wrap scattered dots around the viewport so the background never empties.
-        const px = ((q.x + q.vx * spread + jx + dx) % w + w) % w;
-        const py = ((q.y + q.vy * spread + jy + dy) % h + h) % h;
+        // Dots only ever travel outward from the face; ones leaving the screen are simply skipped.
+        const px = q.x + q.vx * spread + jx + dx;
+        const py = q.y + q.vy * spread + jy + dy;
+        if (px < -2 || py < -2 || px > w + 2 || py > h + 2) continue;
         ctx.fillRect(px, py, q.s, q.s);
       }
       ctx.globalAlpha = 1;
