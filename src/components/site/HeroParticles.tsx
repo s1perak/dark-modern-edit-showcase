@@ -15,6 +15,12 @@ export function HeroParticles() {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let parts: P[] = [];
     let raf = 0;
+    let entranceStart: number | undefined;
+    let readyAt: number | undefined;
+    const onReady = () => {
+      readyAt = performance.now() + 650;
+    };
+    window.addEventListener("portfolio:ready", onReady);
     let w = 0, h = 0;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const img = new Image();
@@ -72,13 +78,19 @@ export function HeroParticles() {
     };
 
     const draw = (t: number) => {
+      if (entranceStart === undefined && readyAt !== undefined && parts.length > 0) {
+        entranceStart = Math.max(t, readyAt);
+      }
+      const entranceProgress = reduce ? 1 : entranceStart === undefined ? 0 : Math.min(1, Math.max(0, (t - entranceStart) / 2200));
+      const gather = entranceProgress * entranceProgress * (3 - 2 * entranceProgress);
+      const entranceScatter = reduce ? 0 : 0.7 * (1 - gather);
       const scroll = reduce ? 0 : Math.max(0, window.scrollY / (h || 1));
       const p = Math.min(1, scroll / 1.08);
       const e = p * p * (3 - 2 * p);
       // Keep drifting slowly after the explosion so the dots live behind the whole site.
       const extra = Math.log1p(Math.max(0, scroll - 1.08)) * 0.08;
       // The portrait starts already a little scattered, then explodes further on scroll.
-      const spread = (0.035 + (e + extra) * 0.95) * Math.max(w, h) * 0.42;
+      const spread = (0.035 + entranceScatter * (1 - p) + (e + extra) * 0.95) * Math.max(w, h) * 0.42;
       // Past the hero the dots ease back into a faint texture.
       const below = reduce ? 0 : Math.min(1, Math.max(0, (window.scrollY - h * 0.6) / (h * 0.7)));
       const dim = 1 - below * 0.7;
@@ -110,6 +122,7 @@ export function HeroParticles() {
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", build);
+      window.removeEventListener("portfolio:ready", onReady);
       img.onload = null;
       parts = [];
     };

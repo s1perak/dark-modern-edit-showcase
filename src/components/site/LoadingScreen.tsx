@@ -3,7 +3,10 @@ import { useEffect, useState } from "react";
 export function LoadingScreen() {
   const [done, setDone] = useState(false);
   useEffect(() => {
-    const t = setTimeout(() => setDone(true), 1700);
+    const t = setTimeout(() => {
+      setDone(true);
+      window.dispatchEvent(new Event("portfolio:ready"));
+    }, 1700);
     return () => clearTimeout(t);
   }, []);
 
