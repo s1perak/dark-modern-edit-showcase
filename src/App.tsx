@@ -8,6 +8,7 @@ import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 import { LoadingScreen } from "@/components/site/LoadingScreen";
 import { HeroParticles } from "@/components/site/HeroParticles";
+import { SiteBackdrop } from "@/components/site/SiteBackdrop";
 import { Toaster } from "@/components/ui/sonner";
 // Removable AI feature: delete this import + <ProjectMatcher /> below to remove.
 import { ProjectMatcher } from "@/features/project-matcher/ProjectMatcher";
