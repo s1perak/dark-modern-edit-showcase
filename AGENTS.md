@@ -8,3 +8,4 @@
 - Build the portfolio as a media-first dark showroom with one mixed-format Selected Cuts mosaic driven by reusable project data, because landscape and short-form work should coexist without duplicating playback content.- Keep the AI project matcher self-contained (src/features/project-matcher + supabase/functions/project-matcher, one line in App.tsx) so it can be removed without touching other sections.
 - Import site images as bundled files in src/assets, not .asset.json CDN pointers, because the custom domain is hosted on Vercel where /__l5e asset URLs do not resolve.
 - Keep portrait particles isolated in the background component with continuous scroll-driven displacement outward from the portrait (no viewport wrapping), so every dot visibly originates from the face.
+- Handle same-page navigation in one cancellable, reduced-motion-aware scroll hook so buttons share smooth easing without altering manual scrolling.

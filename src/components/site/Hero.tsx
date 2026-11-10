@@ -27,7 +27,7 @@ export function Hero() {
             </Button>
           </div>
         </div>
-        <div className="hero-scroll" aria-hidden="true">
+        <div className="hero-scroll pointer-events-none" aria-hidden="true">
           <div className="hero-scroll-line" />
           <p className="text-[9px] font-bold uppercase text-muted-foreground">Scroll to explore</p>
         </div>

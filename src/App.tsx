@@ -13,9 +13,11 @@ import { Toaster } from "@/components/ui/sonner";
 // Removable AI feature: delete this import + <ProjectMatcher /> below to remove.
 import { ProjectMatcher } from "@/features/project-matcher/ProjectMatcher";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useSectionScroll } from "@/hooks/useSectionScroll";
 
 export default function App() {
   useScrollReveal();
+  useSectionScroll();
   return (
     <main className="relative text-foreground">
       <SiteBackdrop />
