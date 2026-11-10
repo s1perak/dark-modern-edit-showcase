@@ -39,14 +39,14 @@ export function HeroParticles() {
       for (let y = 0; y < off.height; y++) for (let x = 0; x < off.width; x++) {
         const i = (y * off.width + x) * 4;
         const lum = (data[i] + data[i + 1] + data[i + 2]) / 3;
-        if (lum < 28 || Math.random() > 0.55 + lum / 400) continue;
+        if (lum < 16 || Math.random() > 0.6 + lum / 300) continue;
         const ang = Math.random() * Math.PI * 2;
         const sp = 0.4 + Math.random() * 1.6;
         parts.push({
           x: ox + x * step, y: oy + y * step,
           vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 0.3,
-          r: data[i], g: data[i + 1], b: data[i + 2],
-          a: Math.min(1, lum / 160), s: 0.6 + Math.random() * 1.1,
+          r: Math.min(255, data[i] * 1.8 + 30), g: Math.min(255, data[i + 1] * 1.8 + 28), b: Math.min(255, data[i + 2] * 1.8 + 24),
+          a: Math.min(1, 0.35 + lum / 90), s: 0.8 + Math.random() * 1.2,
         });
       }
     };
