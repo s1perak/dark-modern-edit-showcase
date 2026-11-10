@@ -3,14 +3,6 @@ import { Button } from "@/components/ui/button";
 export function Hero() {
   return (
     <section id="top" className="hero-canvas relative">
-      <div className="hero-meta hero-meta-left" aria-hidden="true">
-        <p>ISO 800 · 4K 24FPS · S-LOG3</p>
-        <p>TIMELINE ROBERT-V26 · CUT, GRADE, MIX</p>
-      </div>
-      <div className="hero-meta hero-meta-right" aria-hidden="true">
-        <p>REC ● 00:00:24:12</p>
-        <p className="text-primary">RENDERING_</p>
-      </div>
       <div className="hero-stage site-container relative">
         <div className="hero-copy animate-fade-up">
           <p className="mb-4 text-[10px] font-bold uppercase text-primary opacity-80">Video editor · Portfolio</p>
