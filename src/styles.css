@@ -297,28 +297,25 @@
 .site-glow {
   position: absolute; z-index: 1; pointer-events: none;
   border-radius: 50%;
-  mix-blend-mode: screen;
+  isolation: isolate;
   will-change: transform, opacity;
 }
 .site-glow-1 {
   width: 90vmax; height: 90vmax;
   left: -30vmax; top: -28vmax;
   background: radial-gradient(circle, hsl(41 34% 80% / 0.28) 0%, hsl(41 32% 74% / 0.15) 34%, transparent 62%);
-  filter: blur(60px);
   animation: leak-wave-1 11s ease-in-out infinite;
 }
 .site-glow-2 {
   width: 74vmax; height: 74vmax;
   right: -26vmax; top: 46vh;
   background: radial-gradient(circle, hsl(38 30% 74% / 0.17) 0%, hsl(38 28% 68% / 0.09) 38%, transparent 64%);
-  filter: blur(70px);
   animation: leak-wave-2 14s ease-in-out infinite;
 }
 .site-glow-3 {
   width: 46vmax; height: 46vmax;
   left: 6%; top: 26vh;
   background: radial-gradient(circle, hsl(43 35% 85% / 0.12) 0%, transparent 58%);
-  filter: blur(50px);
   animation: leak-wave-3 9s ease-in-out infinite;
 }
 /* Slow rolling wave paths: each glow drifts in a smooth loop, swelling and
