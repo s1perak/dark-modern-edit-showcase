@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
-import camera from "@/assets/hero-camera.jpg";
+import portrait from "@/assets/hero-portrait.jpg";
 
 type P = { x: number; y: number; vx: number; vy: number; r: number; g: number; b: number; a: number; s: number; f1: number; f2: number; p1: number; p2: number };
 
-/** Camera rendered as particles that scatter ("explode") as the user scrolls. */
+/** Portrait rendered as particles that scatter ("explode") as the user scrolls. */
 export function HeroParticles() {
   const ref = useRef<HTMLCanvasElement>(null);
 
@@ -18,7 +18,7 @@ export function HeroParticles() {
     let w = 0, h = 0;
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     const img = new Image();
-    img.src = camera;
+    img.src = portrait;
 
     const build = () => {
       const rect = canvas.getBoundingClientRect();
@@ -26,9 +26,10 @@ export function HeroParticles() {
       canvas.width = w * dpr; canvas.height = h * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       if (!img.complete || !img.naturalWidth) return;
-      const scale = Math.min((w * 0.9) / img.naturalWidth, (h * 0.75) / img.naturalHeight);
+      // Tall portrait: fill most of the viewport height, floating above the hero copy.
+      const scale = Math.min((w * 0.8) / img.naturalWidth, (h * 0.82) / img.naturalHeight);
       const iw = img.naturalWidth * scale, ih = img.naturalHeight * scale;
-      const ox = (w - iw) / 2, oy = (h - ih) / 2 - h * 0.06;
+      const ox = (w - iw) / 2, oy = (h - ih) / 2 - h * 0.04;
       const step = w < 640 ? 4 : 3;
       const off = document.createElement("canvas");
       off.width = Math.ceil(iw / step); off.height = Math.ceil(ih / step);
@@ -38,15 +39,19 @@ export function HeroParticles() {
       parts = [];
       for (let y = 0; y < off.height; y++) for (let x = 0; x < off.width; x++) {
         const i = (y * off.width + x) * 4;
-        const lum = (data[i] + data[i + 1] + data[i + 2]) / 3;
-        if (lum < 16 || Math.random() > 0.6 + lum / 300) continue;
+        const raw = (data[i] + data[i + 1] + data[i + 2]) / 3;
+        // The black background (and its JPEG noise) stays empty: only real detail becomes a dot.
+        if (raw < 18) continue;
+        // Lift the shadows so the dim side of the face still reads.
+        const lum = Math.pow(raw / 255, 0.55) * 255;
+        if (Math.random() > 0.35 + lum / 280) continue;
         const ang = Math.random() * Math.PI * 2;
         const sp = 0.4 + Math.random() * 1.6;
         parts.push({
           x: ox + x * step, y: oy + y * step,
           vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 0.3,
-          r: Math.min(255, data[i] * 1.8 + 30), g: Math.min(255, data[i + 1] * 1.8 + 28), b: Math.min(255, data[i + 2] * 1.8 + 24),
-          a: Math.min(1, 0.35 + lum / 90), s: 0.8 + Math.random() * 1.2,
+          r: Math.min(255, data[i] * 1.9 + 28), g: Math.min(255, data[i + 1] * 1.85 + 26), b: Math.min(255, data[i + 2] * 1.8 + 22),
+          a: Math.min(0.95, 0.18 + lum / 190), s: 0.8 + Math.random() * 1.2,
           f1: 0.6 + Math.random() * 1.1, f2: 0.6 + Math.random() * 1.1,
           p1: Math.random() * Math.PI * 2, p2: Math.random() * Math.PI * 2,
         });
