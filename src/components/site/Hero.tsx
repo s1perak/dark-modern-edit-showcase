@@ -1,10 +1,6 @@
 export function Hero() {
   return (
-    <section id="top" className="hero-canvas relative overflow-hidden border-b border-border">
-      <div className="hero-leak hero-leak-1" aria-hidden="true" />
-      <div className="hero-leak hero-leak-2" aria-hidden="true" />
-      <div className="hero-fade" aria-hidden="true" />
-      <div className="hero-grain" aria-hidden="true" />
+    <section id="top" className="hero-canvas relative">
       <div className="hero-meta hero-meta-left" aria-hidden="true">
         <p>ISO 800 · 4K 24FPS · S-LOG3</p>
         <p>TIMELINE ROBERT-V26 · CUT, GRADE, MIX</p>
