@@ -55,11 +55,11 @@ export function HeroParticles() {
       const p = reduce ? 0 : Math.min(1, Math.max(0, window.scrollY / (h * 0.9 || 1)));
       const e = p * p * (3 - 2 * p);
       // Keep drifting slowly after the explosion so the dots live behind the whole site.
-      const extra = reduce ? 0 : Math.max(0, window.scrollY - h) * 0.00015;
-      const spread = (e + extra) * Math.max(w, h) * 0.9;
+      const extra = 0;
+      const spread = (e + extra) * Math.max(w, h) * 0.42;
       // Past the hero the dots ease back into a faint texture.
-      const below = reduce ? 0 : Math.min(1, Math.max(0, (window.scrollY - h) / (h * 1.4)));
-      const dim = 1 - below * 0.85;
+      const below = reduce ? 0 : Math.min(1, Math.max(0, (window.scrollY - h * 0.6) / (h * 0.7)));
+      const dim = 1 - below * 0.7;
       ctx.clearRect(0, 0, w, h);
       for (let k = 0; k < parts.length; k++) {
         const q = parts[k];
@@ -69,7 +69,6 @@ export function HeroParticles() {
         ctx.fillStyle = `rgb(${q.r},${q.g},${q.b})`;
         // Wrap scattered dots around the viewport so the background never empties.
         let px = q.x + q.vx * spread + jx, py = q.y + q.vy * spread + jy;
-        if (e > 0.5) { px = ((px % w) + w) % w; py = ((py % h) + h) % h; }
         ctx.fillRect(px, py, q.s, q.s);
       }
       ctx.globalAlpha = 1;
