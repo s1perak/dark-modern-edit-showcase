@@ -23,7 +23,8 @@ export function HeroParticles() {
     };
     window.addEventListener("portfolio:ready", onReady);
     let w = 0, h = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Tiny dots do not need a retina-sized drawing surface; keep fill work predictable.
+    const dpr = 1;
     const img = new Image();
     img.src = portrait;
 
@@ -116,6 +117,7 @@ export function HeroParticles() {
       for (const batch of batches) {
         ctx.globalAlpha = batch.alpha * opacity;
         ctx.fillStyle = batch.color;
+        ctx.beginPath();
         for (const q of batch.particles) {
         // Past the hero the dots keep drifting slowly on bounded loops instead of freezing.
         const amp = 34 * below;
@@ -125,8 +127,9 @@ export function HeroParticles() {
         const px = q.x + q.vx * spread + dx;
         const py = q.y + q.vy * spread + dy;
         if (px < -2 || py < -2 || px > w + 2 || py > h + 2) continue;
-        ctx.fillRect(px, py, q.s, q.s);
+        ctx.rect(Math.round(px), Math.round(py), q.s, q.s);
         }
+        ctx.fill();
       }
       ctx.globalAlpha = 1;
       raf = requestAnimationFrame(draw);
