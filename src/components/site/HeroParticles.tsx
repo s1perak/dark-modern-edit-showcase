@@ -14,11 +14,12 @@ export function HeroParticles() {
     if (!ctx) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let parts: P[] = [];
+    let batches: { color: string; alpha: number; particles: P[] }[] = [];
     let raf = 0;
     let entranceStart: number | undefined;
     let readyAt: number | undefined;
     const onReady = () => {
-      readyAt = performance.now() + 650;
+      readyAt = performance.now() + 250;
     };
     window.addEventListener("portfolio:ready", onReady);
     let w = 0, h = 0;
@@ -75,14 +76,30 @@ export function HeroParticles() {
         });
       }
       }
+      // Group similar colors once, rather than switching canvas paint for every dot each frame.
+      const grouped = new Map<string, { color: string; alpha: number; particles: P[] }>();
+      for (const particle of parts) {
+        const r = Math.round(particle.r / 8) * 8;
+        const g = Math.round(particle.g / 8) * 8;
+        const b = Math.round(particle.b / 8) * 8;
+        const alpha = Math.round(particle.a * 10) / 10;
+        const key = `${r},${g},${b},${alpha}`;
+        let batch = grouped.get(key);
+        if (!batch) {
+          batch = { color: `rgb(${r},${g},${b})`, alpha, particles: [] };
+          grouped.set(key, batch);
+        }
+        batch.particles.push(particle);
+      }
+      batches = [...grouped.values()];
     };
 
     const draw = (t: number) => {
       if (entranceStart === undefined && readyAt !== undefined && parts.length > 0) {
         entranceStart = Math.max(t, readyAt);
       }
-      const entranceProgress = reduce ? 1 : entranceStart === undefined ? 0 : Math.min(1, Math.max(0, (t - entranceStart) / 2200));
-      const gather = entranceProgress * entranceProgress * (3 - 2 * entranceProgress);
+      const entranceProgress = reduce ? 1 : entranceStart === undefined ? 0 : Math.min(1, Math.max(0, (t - entranceStart) / 1000));
+      const gather = entranceProgress ** 3 * (entranceProgress * (entranceProgress * 6 - 15) + 10);
       const entranceScatter = reduce ? 0 : 0.7 * (1 - gather);
       const scroll = reduce ? 0 : Math.max(0, window.scrollY / (h || 1));
       const p = Math.min(1, scroll / 1.08);
@@ -95,21 +112,21 @@ export function HeroParticles() {
       const below = reduce ? 0 : Math.min(1, Math.max(0, (window.scrollY - h * 0.6) / (h * 0.7)));
       const dim = 1 - below * 0.7;
       ctx.clearRect(0, 0, w, h);
-      for (let k = 0; k < parts.length; k++) {
-        const q = parts[k];
-        const jx = reduce ? 0 : Math.sin(t / 900 + k) * 0.15;
-        const jy = reduce ? 0 : Math.cos(t / 1100 + k * 1.3) * 0.15;
+      const opacity = 0.6 * (1 - e * 0.5) * dim;
+      for (const batch of batches) {
+        ctx.globalAlpha = batch.alpha * opacity;
+        ctx.fillStyle = batch.color;
+        for (const q of batch.particles) {
         // Past the hero the dots keep drifting slowly on bounded loops instead of freezing.
         const amp = 34 * below;
-        const dx = reduce ? 0 : Math.sin((t / 8200 + scroll * 0.45) * q.f1 + q.p1) * amp;
-        const dy = reduce ? 0 : Math.cos((t / 10600 + scroll * 0.45) * q.f2 + q.p2) * amp * 0.7;
-        ctx.globalAlpha = q.a * 0.6 * (1 - e * 0.5) * dim;
-        ctx.fillStyle = `rgb(${q.r},${q.g},${q.b})`;
+        const dx = reduce || below === 0 ? 0 : Math.sin((t / 8200 + scroll * 0.45) * q.f1 + q.p1) * amp;
+        const dy = reduce || below === 0 ? 0 : Math.cos((t / 10600 + scroll * 0.45) * q.f2 + q.p2) * amp * 0.7;
         // Dots only ever travel outward from the face; ones leaving the screen are simply skipped.
-        const px = q.x + q.vx * spread + jx + dx;
-        const py = q.y + q.vy * spread + jy + dy;
+        const px = q.x + q.vx * spread + dx;
+        const py = q.y + q.vy * spread + dy;
         if (px < -2 || py < -2 || px > w + 2 || py > h + 2) continue;
         ctx.fillRect(px, py, q.s, q.s);
+        }
       }
       ctx.globalAlpha = 1;
       raf = requestAnimationFrame(draw);
@@ -125,6 +142,7 @@ export function HeroParticles() {
       window.removeEventListener("portfolio:ready", onReady);
       img.onload = null;
       parts = [];
+      batches = [];
     };
   }, []);
 
