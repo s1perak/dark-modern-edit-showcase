@@ -65,7 +65,8 @@ export function HeroParticles() {
       const e = p * p * (3 - 2 * p);
       // Keep drifting slowly after the explosion so the dots live behind the whole site.
       const extra = Math.log1p(Math.max(0, scroll - 1.08)) * 0.08;
-      const spread = (e + extra) * Math.max(w, h) * 0.42;
+      // The portrait starts already a little scattered, then explodes further on scroll.
+      const spread = (0.16 + (e + extra) * 0.86) * Math.max(w, h) * 0.42;
       // Past the hero the dots ease back into a faint texture.
       const below = reduce ? 0 : Math.min(1, Math.max(0, (window.scrollY - h * 0.6) / (h * 0.7)));
       const dim = 1 - below * 0.7;
