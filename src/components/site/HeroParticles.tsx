@@ -39,11 +39,20 @@ export function HeroParticles() {
       o.drawImage(img, 0, 0, off.width, off.height);
       const data = o.getImageData(0, 0, off.width, off.height).data;
       parts = [];
-      for (let y = 0; y < off.height; y++) for (let x = 0; x < off.width; x++) {
+      for (let y = 0; y < off.height; y++) {
+        // Trace each row of the portrait: fill its shadow detail, never the black backdrop.
+        let left = off.width, right = -1;
+        for (let x = 0; x < off.width; x++) {
+          const i = (y * off.width + x) * 4;
+          if ((data[i] + data[i + 1] + data[i + 2]) / 3 >= 18) {
+            left = Math.min(left, x);
+            right = x;
+          }
+        }
+        for (let x = left; x <= right; x++) {
         const i = (y * off.width + x) * 4;
         const raw = (data[i] + data[i + 1] + data[i + 2]) / 3;
-        // The black background (and its JPEG noise) stays empty: only real detail becomes a dot.
-        if (raw < 18) continue;
+        const shadow = raw < 18;
         // Lift the shadows so the dim side of the face still reads.
         const lum = Math.pow(raw / 255, 0.55) * 255;
         const ang = Math.random() * Math.PI * 2;
@@ -51,11 +60,14 @@ export function HeroParticles() {
         parts.push({
           x: ox + x * step, y: oy + y * step,
           vx: Math.cos(ang) * sp, vy: Math.sin(ang) * sp - 0.3,
-          r: Math.min(255, data[i] * 1.9 + 28), g: Math.min(255, data[i + 1] * 1.85 + 26), b: Math.min(255, data[i + 2] * 1.8 + 22),
-          a: Math.min(1, 0.25 + lum / 180), s: 1 + Math.random() * 0.8,
+          r: Math.min(255, data[i] * (shadow ? 2 : 1.9) + (shadow ? 24 : 28)),
+          g: Math.min(255, data[i + 1] * (shadow ? 2 : 1.85) + (shadow ? 24 : 26)),
+          b: Math.min(255, data[i + 2] * (shadow ? 2 : 1.8) + (shadow ? 24 : 22)),
+          a: Math.min(1, (shadow ? 0.55 : 0.25) + lum / 180), s: 1 + Math.random() * 0.8,
           f1: 0.6 + Math.random() * 1.1, f2: 0.6 + Math.random() * 1.1,
           p1: Math.random() * Math.PI * 2, p2: Math.random() * Math.PI * 2,
         });
+      }
       }
     };
 
