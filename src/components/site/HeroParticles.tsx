@@ -59,7 +59,7 @@ export function HeroParticles() {
       const spread = (e + extra) * Math.max(w, h) * 0.9;
       // Past the hero the dots ease back into a faint texture.
       const below = reduce ? 0 : Math.min(1, Math.max(0, (window.scrollY - h) / (h * 1.4)));
-      const dim = 1 - below * 0.5;
+      const dim = 1 - below * 0.85;
       ctx.clearRect(0, 0, w, h);
       for (let k = 0; k < parts.length; k++) {
         const q = parts[k];

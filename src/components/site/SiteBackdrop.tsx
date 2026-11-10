@@ -7,12 +7,14 @@
  */
 export function SiteBackdrop() {
   return (
+    <>
     <div className="site-backdrop" aria-hidden="true">
       <div className="site-glow site-glow-1" />
       <div className="site-glow site-glow-2" />
       <div className="site-glow site-glow-3" />
       <div className="site-veil" />
-      <div className="site-grain" />
     </div>
+    <div className="site-grain" aria-hidden="true" />
+    </>
   );
 }
