@@ -1,3 +1,6 @@
+- [x] Add "See my work" and "Contact" buttons under the hero line and verify them on desktop and phone.
+- [x] Swap the hero particle portrait for the newly uploaded photo.
+
 # Roadmap
 
 - [x] Enlarge and sharpen the particle portrait, slow the initial scatter slightly, and verify continued scroll movement beyond the hero.
