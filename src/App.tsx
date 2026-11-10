@@ -7,6 +7,7 @@ import { Services } from "@/components/site/Services";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
 import { LoadingScreen } from "@/components/site/LoadingScreen";
+import { HeroParticles } from "@/components/site/HeroParticles";
 import { Toaster } from "@/components/ui/sonner";
 // Removable AI feature: delete this import + <ProjectMatcher /> below to remove.
 import { ProjectMatcher } from "@/features/project-matcher/ProjectMatcher";
@@ -16,6 +17,7 @@ export default function App() {
   useScrollReveal();
   return (
     <main className="relative text-foreground">
+      <HeroParticles />
       <div className="relative z-10">
         <LoadingScreen />
         <Navbar />

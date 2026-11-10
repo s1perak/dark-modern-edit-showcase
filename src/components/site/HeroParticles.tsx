@@ -54,15 +54,20 @@ export function HeroParticles() {
     const draw = (t: number) => {
       const p = reduce ? 0 : Math.min(1, Math.max(0, window.scrollY / (h * 0.9 || 1)));
       const e = p * p * (3 - 2 * p);
-      const spread = e * Math.max(w, h) * 0.9;
+      // Keep drifting slowly after the explosion so the dots live behind the whole site.
+      const extra = reduce ? 0 : Math.max(0, window.scrollY - h) * 0.00015;
+      const spread = (e + extra) * Math.max(w, h) * 0.9;
       ctx.clearRect(0, 0, w, h);
       for (let k = 0; k < parts.length; k++) {
         const q = parts[k];
         const jx = reduce ? 0 : Math.sin(t / 900 + k) * 0.6;
         const jy = reduce ? 0 : Math.cos(t / 1100 + k * 1.3) * 0.6;
-        ctx.globalAlpha = q.a * (1 - e * 0.85);
+        ctx.globalAlpha = q.a * (1 - e * 0.55);
         ctx.fillStyle = `rgb(${q.r},${q.g},${q.b})`;
-        ctx.fillRect(q.x + q.vx * spread + jx, q.y + q.vy * spread + jy, q.s, q.s);
+        // Wrap scattered dots around the viewport so the background never empties.
+        let px = q.x + q.vx * spread + jx, py = q.y + q.vy * spread + jy;
+        if (e > 0.5) { px = ((px % w) + w) % w; py = ((py % h) + h) % h; }
+        ctx.fillRect(px, py, q.s, q.s);
       }
       ctx.globalAlpha = 1;
       raf = requestAnimationFrame(draw);
