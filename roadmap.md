@@ -1,5 +1,7 @@
 # Roadmap
 
+- [ ] Enlarge and sharpen the particle portrait, slow the initial scatter slightly, and verify continued scroll movement beyond the hero.
+
 - [x] Tighten Services-to-Contact spacing further.
 - [x] Test a moving 3D dark room behind the unchanged hero and verify its rendering.
 
