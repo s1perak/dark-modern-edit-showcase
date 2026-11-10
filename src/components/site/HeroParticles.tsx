@@ -67,10 +67,14 @@ export function HeroParticles() {
         const q = parts[k];
         const jx = reduce ? 0 : Math.sin(t / 900 + k) * 0.6;
         const jy = reduce ? 0 : Math.cos(t / 1100 + k * 1.3) * 0.6;
+        // Past the hero the dots keep drifting slowly on bounded loops instead of freezing.
+        const amp = 34 * below;
+        const dx = reduce ? 0 : Math.sin((t / 8200) * q.f1 + q.p1) * amp;
+        const dy = reduce ? 0 : Math.cos((t / 10600) * q.f2 + q.p2) * amp * 0.7;
         ctx.globalAlpha = q.a * (1 - e * 0.55) * dim;
         ctx.fillStyle = `rgb(${q.r},${q.g},${q.b})`;
         // Wrap scattered dots around the viewport so the background never empties.
-        let px = q.x + q.vx * spread + jx, py = q.y + q.vy * spread + jy;
+        let px = q.x + q.vx * spread + jx + dx, py = q.y + q.vy * spread + jy + dy;
         ctx.fillRect(px, py, q.s, q.s);
       }
       ctx.globalAlpha = 1;
